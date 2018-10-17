@@ -10,33 +10,33 @@ See the branch [ngxs3](https://github.com/McKratt/ngxs-showcase/tree/ngxs3) to s
 ## Model ##
 Consider a person which can contain many addresses :
 
-[alt model](./docs/model.png)
+![alt model](./docs/model.png)
 
 ## Screens ##
 
 * The index screen contain a button to add a new person and show all the already existing persons
 
-[alt index](./docs/mockupIndex.png)
+![alt index](./docs/mockupIndex.png)
 
 * Once we push the button to add a new person, we navigate to the screen __persons/new__
 
-[alt new](./docs/mockupGeneral.png)
+![alt new](./docs/mockupGeneral.png)
 
 * Once the button Save pressed, a new banner appear with the general info of the person inside. 
 * We stay on the same screen but the url is now __persons/{id}__, where ID represent an internal automatically generated ID. 
 * The button is no more **Add** but **Save**.
 * In Case of modification, when the button Save is pushed the tile in the banner should be automatically updated.
 
-[alt created](./docs/mockupCreated.png) 
+![alt created](./docs/mockupCreated.png) 
 
 * You can navigate to the addresses screen by clicking in the menu at left.
 * You navigate then to __persons/{id}/addresses and you show all the existing addresses.
 
-[alt addresses](./docs/mockupAddresses.png)
+![alt addresses](./docs/mockupAddresses.png)
 
 * Once the add button pressed we navigate to __persons/{id}/addresses/new
 
-[alt address](./docs/mockupAddress.png)
+![alt address](./docs/mockupAddress.png)
 
 * Once the button Add pressed we navigate back to __persons/{id}/addresses
 * The new address should be now visible
