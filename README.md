@@ -53,3 +53,5 @@ Consider a person which can contain many addresses :
 - The forms should have all their model in a [NGXS state](https://ngxs.gitbook.io/ngxs/concepts/state).
 - Conditions should, most of the time, determined with [NGXS selector](https://ngxs.gitbook.io/ngxs/concepts/select).
 - Angular Components don't communicate each other, they only interrogate the [store](https://ngxs.gitbook.io/ngxs/concepts/store).
+
+# NGXS 3 Implementation details #
