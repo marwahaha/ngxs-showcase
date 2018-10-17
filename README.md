@@ -1,4 +1,4 @@
-#NGXS Showcase#
+# NGXS Showcase #
 
 This project demonstrate certain use of [NGXS]().
 
