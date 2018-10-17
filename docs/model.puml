@@ -1,0 +1,18 @@
+@startuml
+
+class Person {
+    - name : String
+    - forename : String
+    - birthDate : LocalDate
+    - addresses : List<Address>
+}
+
+class Address {
+    - street : String
+    - zipCode : int
+    - Country : String
+}
+
+Person *- Address
+
+@enduml
