@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
-import {MatButtonModule, MatSidenavModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatSidenavModule} from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
-    MatButtonModule,
-    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
     MatSidenavModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatListModule,
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class MaterialModule {

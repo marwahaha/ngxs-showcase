@@ -10,6 +10,6 @@ export class PersonService {
   }
 
   getPersons(): Observable<Person> {
-    return Observable.of({name: "1"}, {name: "2"})
+    return Observable.of({name: "Martin", forename: "Robert C."}, {name: "Brown", forename: "Simon"})
   }
 }

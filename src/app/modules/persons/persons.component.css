@@ -1,0 +1,16 @@
+.person-item {
+  align-self: flex-start;
+}
+
+.person-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.person-tile {
+  padding: 1em;
+}
+
