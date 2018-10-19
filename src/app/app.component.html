@@ -1,8 +1,8 @@
 <mat-sidenav-container class="main-container">
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav mode="side" opened class="side-menu">
     <app-side-menu></app-side-menu>
   </mat-sidenav>
   <mat-sidenav-content class="main-content">
-    <app-persons></app-persons>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

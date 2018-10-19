@@ -3,18 +3,22 @@ import {CommonModule} from '@angular/common';
 import {PersonsComponent} from './persons.component';
 import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {PersonService} from './service/person.service';
+import {PersonEditComponent} from './person-edit/person-edit.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     MatListModule,
     MatCardModule,
     MatIconModule
   ],
   exports: [
-    PersonsComponent
+    PersonsComponent,
+    PersonEditComponent
   ],
-  declarations: [PersonsComponent],
+  declarations: [PersonsComponent, PersonEditComponent],
   providers: [
     PersonService
   ]

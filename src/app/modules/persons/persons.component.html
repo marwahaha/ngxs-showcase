@@ -1,7 +1,8 @@
 <div>
   <mat-list class="person-list">
     <mat-list-item *ngFor="let person of persons" class="person-item">
-      <mat-card class="person-tile">
+      <a [routerLink]="['/persons', person.id]">
+        <mat-card class="person-tile">
         <mat-card-header>
           <mat-icon>perm_identity</mat-icon>
         </mat-card-header>
@@ -10,6 +11,7 @@
           <p>{{person.name}}</p>
         </mat-card-content>
       </mat-card>
+      </a>
     </mat-list-item>
   </mat-list>
 </div>

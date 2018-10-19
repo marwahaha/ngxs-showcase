@@ -3,6 +3,7 @@ import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {PersonsModule} from './modules/persons/persons.module';
 import {MaterialModule} from './commons/material/material.module';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       imports: [
         CoreModule,
         PersonsModule,
-        MaterialModule
+        MaterialModule,
+        RouterTestingModule
       ]
     }).compileComponents();
   }));
