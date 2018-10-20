@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
@@ -9,6 +9,11 @@ import {PersonsModule} from './modules/persons/persons.module';
 import {RouterModule, Routes} from '@angular/router';
 import {PersonsComponent} from './modules/persons/persons.component';
 import {PersonEditComponent} from './modules/persons/person-edit/person-edit.component';
+import {NgxsModule, Store} from '@ngxs/store';
+import {MainState} from './core/store/MainState';
+import {PersonService} from './modules/persons/service/person.service';
+import {Person} from './modules/persons/models/person.model';
+import {InitMainState} from './core/store/actions/main-state.actions';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +30,17 @@ const appRoutes: Routes = [
   }
 ];
 
+export function loadPerson(personService: PersonService, store: Store) {
+  return () => {
+    let persons: Person[] = [];
+    personService.getPersons().subscribe(
+      (person) => persons.push(person),
+      (error) => console.log(error),
+      () => store.dispatch(new InitMainState(persons))
+    )
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -34,9 +50,12 @@ const appRoutes: Routes = [
     MaterialModule,
     CoreModule,
     PersonsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxsModule.forRoot([MainState])
   ],
-  providers: [],
+  providers: [
+    {provide: APP_INITIALIZER, useFactory: loadPerson, deps: [PersonService, Store], multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

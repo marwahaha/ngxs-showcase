@@ -1,6 +1,6 @@
 <div>
   <mat-list class="person-list">
-    <mat-list-item *ngFor="let person of persons" class="person-item">
+    <mat-list-item *ngFor="let person of persons$ | async" class="person-item">
       <a [routerLink]="['/persons', person.id]">
         <mat-card class="person-tile">
         <mat-card-header>

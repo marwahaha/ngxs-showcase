@@ -12,5 +12,9 @@
 
 .person-tile {
   padding: 1em;
+  min-width: 80px;
 }
 
+a {
+  text-decoration: none;
+}

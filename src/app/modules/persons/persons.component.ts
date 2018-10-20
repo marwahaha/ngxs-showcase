@@ -1,23 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {PersonService} from './service/person.service';
+import {Component} from '@angular/core';
 import {Person} from './models/person.model';
+import {Observable} from 'rxjs';
+import {Select} from '@ngxs/store';
+import {MainState} from '../../core/store/MainState';
 
 @Component({
   selector: 'app-persons',
   templateUrl: './persons.component.html',
   styleUrls: ['./persons.component.css']
 })
-export class PersonsComponent implements OnInit {
+export class PersonsComponent {
 
-  persons: Person[] = [];
+  @Select(MainState.persons)
+  persons$: Observable<Person>;
 
-  constructor(private service: PersonService) {
+  constructor() {
   }
-
-  ngOnInit() {
-    this.service.getPersons().subscribe(
-      person => this.persons.push(person)
-    );
-  }
-
 }
