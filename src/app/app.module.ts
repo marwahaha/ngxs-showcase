@@ -32,13 +32,13 @@ const appRoutes: Routes = [
 
 export function loadPerson(personService: PersonService, store: Store) {
   return () => {
-    let persons: Person[] = [];
+    const persons: Person[] = [];
     personService.getPersons().subscribe(
       (person) => persons.push(person),
       (error) => console.log(error),
       () => store.dispatch(new InitMainState(persons))
-    )
-  }
+    );
+  };
 }
 
 @NgModule({

@@ -6,10 +6,10 @@ import {InitMainState} from '../actions/main-state.actions';
 
 describe('Main State', () => {
   let store: Store;
-  const expectedPerson: Person[] = [{id: 1, name: "premier", forename: "1"}, {
+  const expectedPerson: Person[] = [{id: 1, name: 'premier', forename: '1'}, {
     id: 2,
-    name: "seconde",
-    forename: "2"
+    name: 'second',
+    forename: '2'
   }];
 
   setupTestBed({
@@ -22,7 +22,7 @@ describe('Main State', () => {
   });
 
   it('should init to empty', () => {
-    store.selectOnce(state => expect(state.persons).toEqual([]))
+    store.selectOnce(state => expect(state.persons).toEqual([]));
   });
 
   describe('InitMainState action', () => {
@@ -34,10 +34,10 @@ describe('Main State', () => {
   });
 
   describe('Selector persons', () => {
-    it('should return all the persons in the state', async((done) => {
+    it('should return all the persons in the state', async(() => {
       store.dispatch(new InitMainState(expectedPerson));
       store.selectOnce(state => {
-        expect(MainState.persons(state.persons)).toEqual(expectedPerson)
+        expect(MainState.persons(state.persons)).toEqual(expectedPerson);
       });
     }));
   });

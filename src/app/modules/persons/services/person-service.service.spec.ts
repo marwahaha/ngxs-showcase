@@ -4,19 +4,15 @@ import {PersonService} from './person.service';
 
 describe('PersonService', () => {
 
-  setupTestBed
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [PersonService]
-    });
+  setupTestBed({
+    providers: [PersonService]
   });
 
   it('should be created', inject([PersonService], (service: PersonService) => {
     expect(service).toBeTruthy();
   }));
   it('should contains two Persons', (done) => {
-    let counter: number = 0;
+    let counter = 0;
     const service: PersonService = TestBed.get(PersonService);
     service.getPersons().subscribe(
       () => counter++,

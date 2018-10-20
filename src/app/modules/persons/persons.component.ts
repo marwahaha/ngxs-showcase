@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Person} from './models/person.model';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {Select} from '@ngxs/store';
 import {MainState} from '../../core/store/states/main-state';
 

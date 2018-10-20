@@ -11,7 +11,7 @@ import {InitMainState} from '../../core/store/actions/main-state.actions';
 describe('PersonsComponent', () => {
   let component: PersonsComponent;
   let fixture: ComponentFixture<PersonsComponent>;
-  const expectedPerson: Person[] = [{id: 1, name: "premier", forename: "1"}, {id: 2, name: "seconde", forename: "2"}];
+  const expectedPerson: Person[] = [{id: 1, name: 'premier', forename: '1'}, {id: 2, name: 'second', forename: '2'}];
   let store: Store;
 
   setupTestBed({
@@ -40,7 +40,7 @@ describe('PersonsComponent', () => {
   it('should create', async((done) => {
       expect(component).toBeTruthy();
     store.dispatch(new InitMainState(expectedPerson));
-      let persons: Person[] = [];
+    const persons: Person[] = [];
       component.persons$.subscribe(
         (person) => persons.push(person),
         (error) => done.fail(error),
