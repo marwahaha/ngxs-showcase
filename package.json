@@ -20,11 +20,13 @@
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
     "@angular/material": "^5",
+    "@angular/material-moment-adapter": "5",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@ngxs/store": "^2",
     "core-js": "^2.4.1",
+    "moment": "2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

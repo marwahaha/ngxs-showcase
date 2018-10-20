@@ -1,3 +1,26 @@
-<p>
-  person-edit works!
-</p>
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()" class="person-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="name" formControlName="name"/>
+    <mat-error *ngIf="!personForm.get('name').valid && personForm.get('name').touched">You name should have a lenght
+      between 2 to 10.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Forename</mat-label>
+    <input matInput placeholder="forename" formControlName="forename"/>
+    <mat-error *ngIf="!personForm.get('forename').valid && personForm.get('forename').touched">You forename should have
+      a lenght between 2 to 10.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Birth Date</mat-label>
+    <input matInput [matDatepicker]="myDatepicker" formControlName="birthDate" placeholder="Choose a date"/>
+    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker #myDatepicker></mat-datepicker>
+    <mat-error *ngIf="!personForm.get('birthDate').valid && personForm.get('birthDate').touched">The date should be in
+      the past.
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" [disabled]="!personForm.valid">Save</button>
+</form>
