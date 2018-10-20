@@ -6,13 +6,15 @@ import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './store/states/persons-state.state';
+import {PersonService} from './services/person.service';
 import {InitMainState} from './store/actions/main-state.actions';
 
 describe('PersonsComponent', () => {
   let component: PersonsComponent;
   let fixture: ComponentFixture<PersonsComponent>;
-  const expectedPerson: Person[] = [{id: 1, name: 'premier', forename: '1'}, {id: 2, name: 'second', forename: '2'}];
+
   let store: Store;
+  const loadPersons = jest.fn();
 
   setupTestBed({
     declarations: [PersonsComponent],
@@ -23,12 +25,20 @@ describe('PersonsComponent', () => {
       RouterTestingModule,
       NgxsModule.forRoot([PersonsState])
     ],
-    providers: []
+    providers: [
+      {
+        provide: PersonService,
+        useValue: {
+          loadPersons: loadPersons
+        }
+      }
+    ]
   });
 
   beforeEach(() => {
     TestBed.compileComponents();
     store = TestBed.get(Store);
+    loadPersons.mockReset();
   });
 
   beforeEach(() => {
@@ -39,13 +49,25 @@ describe('PersonsComponent', () => {
 
   it('should create', async((done) => {
       expect(component).toBeTruthy();
-    store.dispatch(new InitMainState(expectedPerson));
-    const persons: Person[] = [];
+    })
+  );
+  it('should intialize the Store', () => {
+    expect(loadPersons.mock.calls.length).toBe(1);
+  });
+
+  describe('persons$', () => {
+
+    const expectedPerson: Person[] = [{id: 1, name: 'premier', forename: '1'}, {id: 2, name: 'second', forename: '2'}];
+
+    it('should be initialized with the content of the State', async((done) => {
+      store.dispatch(new InitMainState(expectedPerson));
+      const persons: Person[] = [];
       component.persons$.subscribe(
         (person) => persons.push(person),
         (error) => done.fail(error),
         () => expect(persons).toEqual(expectedPerson)
       );
-    })
-  );
+    }));
+  });
+
 });
