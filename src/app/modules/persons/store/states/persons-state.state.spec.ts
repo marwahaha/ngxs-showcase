@@ -1,6 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
-import {PersonsStateState} from './persons-state.state';
+import {PersonsState} from './persons-state.state';
 import {Person} from '../../models/person.model';
 import {InitMainState} from '../actions/main-state.actions';
 
@@ -13,7 +13,7 @@ describe('Main State', () => {
   }];
 
   setupTestBed({
-    imports: [NgxsModule.forRoot([PersonsStateState])]
+    imports: [NgxsModule.forRoot([PersonsState])]
   });
 
   beforeEach(() => {
@@ -37,7 +37,7 @@ describe('Main State', () => {
     it('should return all the persons in the state', async(() => {
       store.dispatch(new InitMainState(expectedPerson));
       store.selectOnce(state => {
-        expect(PersonsStateState.persons(state.persons)).toEqual(expectedPerson);
+        expect(PersonsState.persons(state.persons)).toEqual(expectedPerson);
       });
     }));
   });

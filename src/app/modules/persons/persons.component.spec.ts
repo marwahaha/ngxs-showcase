@@ -5,7 +5,7 @@ import {Person} from './models/person.model';
 import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule, Store} from '@ngxs/store';
-import {PersonsStateState} from './store/states/persons-state.state';
+import {PersonsState} from './store/states/persons-state.state';
 import {InitMainState} from './store/actions/main-state.actions';
 
 describe('PersonsComponent', () => {
@@ -21,7 +21,7 @@ describe('PersonsComponent', () => {
       MatListModule,
       MatIconModule,
       RouterTestingModule,
-      NgxsModule.forRoot([PersonsStateState])
+      NgxsModule.forRoot([PersonsState])
     ],
     providers: []
   });

@@ -10,7 +10,7 @@ import {Person} from '../../models/person.model';
     persons: []
   }
 })
-export class PersonsStateState {
+export class PersonsState {
 
   @Selector()
   static persons(state: PersonStateModel): Person[] {
@@ -19,6 +19,7 @@ export class PersonsStateState {
 
   @Action(InitMainState)
   initState(ctx: StateContext<PersonStateModel>, action: InitMainState) {
+    console.log("Received InitState action");
     ctx.setState({
       persons: action.persons,
     });

@@ -4,14 +4,15 @@ import {PersonsComponent} from './persons.component';
 import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {PersonService} from './services/person.service';
 import {PersonEditComponent} from './person-edit/person-edit.component';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule, Store} from '@ngxs/store';
 import {Person} from './models/person.model';
 import {InitMainState} from './store/actions/main-state.actions';
-import {PersonsStateState} from './store/states/persons-state.state';
+import {PersonsState} from './store/states/persons-state.state';
 
 export function loadPerson(personService: PersonService, store: Store) {
   return () => {
+    console.log('Load Persons at Start');
     const persons: Person[] = [];
     personService.getPersons().subscribe(
       (person) => persons.push(person),
@@ -21,6 +22,17 @@ export function loadPerson(personService: PersonService, store: Store) {
   };
 }
 
+const personRoutes: Routes = [
+  {
+    path: '',
+    component: PersonsComponent
+  },
+  {
+    path: ':id',
+    component: PersonEditComponent
+  }
+];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,11 +40,13 @@ export function loadPerson(personService: PersonService, store: Store) {
     MatListModule,
     MatCardModule,
     MatIconModule,
-    NgxsModule.forFeature([PersonsStateState])
+    NgxsModule.forFeature([PersonsState]),
+    RouterModule.forChild(personRoutes)
   ],
   exports: [
     PersonsComponent,
-    PersonEditComponent
+    PersonEditComponent,
+    RouterModule
   ],
   declarations: [PersonsComponent, PersonEditComponent],
   providers: [
