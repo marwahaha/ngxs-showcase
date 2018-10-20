@@ -10,8 +10,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {PersonsComponent} from './modules/persons/persons.component';
 import {PersonEditComponent} from './modules/persons/person-edit/person-edit.component';
 import {NgxsModule, Store} from '@ngxs/store';
-import {MainState} from './core/store/MainState';
-import {PersonService} from './modules/persons/service/person.service';
+import {MainState} from './core/store/states/main-state';
+import {PersonService} from './modules/persons/services/person.service';
 import {Person} from './modules/persons/models/person.model';
 import {InitMainState} from './core/store/actions/main-state.actions';
 

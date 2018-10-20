@@ -1,6 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {PersonStateModel} from './models/person-state.model';
-import {InitMainState} from './actions/main-state.actions';
+import {PersonStateModel} from '../models/person-state.model';
+import {InitMainState} from '../actions/main-state.actions';
 
 
 @State<PersonStateModel>({
@@ -21,7 +21,6 @@ export class MainState {
     console.log('Init Main State');
     ctx.setState({
       persons: action.persons,
-      selectedPerson: undefined
     });
   }
 

@@ -6,19 +6,23 @@ import {MaterialModule} from './commons/material/material.module';
 import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-      imports: [
-        CoreModule,
-        PersonsModule,
-        MaterialModule,
-        RouterTestingModule
-      ]
-    }).compileComponents();
-  }));
+
+  setupTestBed({
+    declarations: [
+      AppComponent
+    ],
+    imports: [
+      CoreModule,
+      PersonsModule,
+      MaterialModule,
+      RouterTestingModule
+    ]
+  });
+
+  beforeEach(() => {
+    TestBed.compileComponents();
+  });
+
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

@@ -3,6 +3,9 @@ import {inject, TestBed} from '@angular/core/testing';
 import {PersonService} from './person.service';
 
 describe('PersonService', () => {
+
+  setupTestBed
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PersonService]

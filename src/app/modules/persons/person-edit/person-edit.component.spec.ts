@@ -6,11 +6,12 @@ describe('PersonEditComponent', () => {
   let component: PersonEditComponent;
   let fixture: ComponentFixture<PersonEditComponent>;
 
+  setupTestBed({
+    declarations: [PersonEditComponent]
+  });
+
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PersonEditComponent]
-    })
-      .compileComponents();
+    TestBed.compileComponents();
   }));
 
   beforeEach(() => {
