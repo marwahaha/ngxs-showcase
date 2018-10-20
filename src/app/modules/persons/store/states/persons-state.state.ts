@@ -19,7 +19,7 @@ export class PersonsState {
 
   @Action(InitMainState)
   initState(ctx: StateContext<PersonStateModel>, action: InitMainState) {
-    console.log("Received InitState action");
+    console.log('Received InitState action');
     ctx.setState({
       persons: action.persons,
     });
