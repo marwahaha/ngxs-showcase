@@ -4,6 +4,7 @@ import {CoreModule} from './core/core.module';
 import {PersonsModule} from './modules/persons/persons.module';
 import {MaterialModule} from './commons/material/material.module';
 import {RouterTestingModule} from '@angular/router/testing';
+import {NgxsModule} from '@ngxs/store';
 
 describe('AppComponent', () => {
 
@@ -15,7 +16,8 @@ describe('AppComponent', () => {
       CoreModule,
       PersonsModule,
       MaterialModule,
-      RouterTestingModule
+      RouterTestingModule,
+      NgxsModule.forRoot([])
     ]
   });
 

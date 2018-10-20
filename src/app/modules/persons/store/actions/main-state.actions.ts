@@ -1,4 +1,4 @@
-import {Person} from '../../../modules/persons/models/person.model';
+import {Person} from '../../models/person.model';
 
 export class InitMainState {
   static readonly type = '[Person Service] Init Main State';

@@ -10,10 +10,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {PersonsComponent} from './modules/persons/persons.component';
 import {PersonEditComponent} from './modules/persons/person-edit/person-edit.component';
 import {NgxsModule, Store} from '@ngxs/store';
-import {MainState} from './core/store/states/main-state';
+import {PersonsStateState} from './modules/persons/store/states/persons-state.state';
 import {PersonService} from './modules/persons/services/person.service';
 import {Person} from './modules/persons/models/person.model';
-import {InitMainState} from './core/store/actions/main-state.actions';
+import {InitMainState} from './modules/persons/store/actions/main-state.actions';
 
 const appRoutes: Routes = [
   {
@@ -30,16 +30,7 @@ const appRoutes: Routes = [
   }
 ];
 
-export function loadPerson(personService: PersonService, store: Store) {
-  return () => {
-    const persons: Person[] = [];
-    personService.getPersons().subscribe(
-      (person) => persons.push(person),
-      (error) => console.log(error),
-      () => store.dispatch(new InitMainState(persons))
-    );
-  };
-}
+
 
 @NgModule({
   declarations: [
@@ -51,11 +42,9 @@ export function loadPerson(personService: PersonService, store: Store) {
     CoreModule,
     PersonsModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot([MainState])
+    NgxsModule.forRoot([])
   ],
-  providers: [
-    {provide: APP_INITIALIZER, useFactory: loadPerson, deps: [PersonService, Store], multi: true}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

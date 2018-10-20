@@ -1,7 +1,7 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {PersonStateModel} from '../models/person-state.model';
 import {InitMainState} from '../actions/main-state.actions';
-import {Person} from '../../../modules/persons/models/person.model';
+import {Person} from '../../models/person.model';
 
 
 @State<PersonStateModel>({
@@ -10,7 +10,7 @@ import {Person} from '../../../modules/persons/models/person.model';
     persons: []
   }
 })
-export class MainState {
+export class PersonsStateState {
 
   @Selector()
   static persons(state: PersonStateModel): Person[] {
