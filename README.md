@@ -47,11 +47,208 @@ Consider a person which can contain many addresses :
   * Button **Add** changed for **Save**
   * Automatic update when saved
 
-## Non Functional Requirements ##
+## Non Functional Requirements
 
 - We should use aot and have distinct js file for each module.
 - The forms should have all their model in a [NGXS state](https://ngxs.gitbook.io/ngxs/concepts/state).
 - Conditions should, most of the time, determined with [NGXS selector](https://ngxs.gitbook.io/ngxs/concepts/select).
 - Angular Components don't communicate each other, they only interrogate the [store](https://ngxs.gitbook.io/ngxs/concepts/store).
 
-# NGXS 2 Implementation details #
+# NGXS 2 Implementation details
+
+## JEST
+
+[jest-preset-angular](https://github.com/thymikee/jest-preset-angular)
+
+### Install
+
+```
+yarn add -D jest jest-preset-angular
+```
+
+### Basic Configuration
+
+**package.json**
+```json
+,
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts"
+  }
+```
+**setupJest.ts**
+```typescript
+import 'jest-preset-angular';
+import './jestGlobalMocks'; // browser mocks globally available for every test
+```
+
+**jestGlobalMocks**
+```typescript
+global['CSS'] = null;
+
+const mock = () => {
+  let storage = {};
+  return {
+    getItem: key => key in storage ? storage[key] : null,
+    setItem: (key, value) => storage[key] = value || '',
+    removeItem: key => delete storage[key],
+    clear: () => storage = {},
+  };
+};
+
+Object.defineProperty(window, 'localStorage', {value: mock()});
+Object.defineProperty(window, 'sessionStorage', {value: mock()});
+Object.defineProperty(document, 'doctype', {
+  value: '<!DOCTYPE html>'
+});
+Object.defineProperty(window, 'getComputedStyle', {
+  value: () => {
+    return {
+      display: 'none',
+      appearance: ['-webkit-appearance']
+    };
+  }
+});
+/**
+ * ISSUE: https://github.com/angular/material2/issues/7101
+ * Workaround for JSDOM missing transform property
+ */
+Object.defineProperty(document.body.style, 'transform', {
+  value: () => {
+    return {
+      enumerable: true,
+      configurable: true,
+    };
+  },
+});
+```
+**typings.d.ts**
+```typescript
+declare var global: any;
+```
+
+### TestBed Optimization
+
+**steupJest.ts**
+```typescript
+import './setupTestBed';
+```
+
+**setupTestBed.ts**
+```typescript
+import {TestBed, async, TestModuleMetadata} from '@angular/core/testing';
+
+const resetTestingModule = TestBed.resetTestingModule,
+  preventAngularFromResetting = () => TestBed.resetTestingModule = () => TestBed;
+
+global.setupTestBed = (moduleDef: TestModuleMetadata) => {
+  beforeAll(async(async () => {
+    resetTestingModule();
+    preventAngularFromResetting();
+    TestBed.configureTestingModule(moduleDef);
+    await TestBed.compileComponents();
+  }));
+
+  afterAll(() => resetTestingModule());
+};
+```
+
+**typings.d.ts**
+```typescript
+declare namespace NodeJS {
+  export interface Global {
+    setupTestBed: any;
+  }
+}
+
+declare var setupTestBed: any;
+
+declare var beforeAll: any;
+declare var afterAll: any;
+```
+
+## Angular Modules Lazy Loading
+
+### Routes
+
+**AppModule** parent
+```typescript
+const appRoutes: Routes = [
+  {
+    path: 'persons',
+    loadChildren: './modules/persons/persons.module#PersonsModule'
+  },
+  ...
+  ];
+
+@NgModule({
+ ...
+  imports: [
+    RouterModule.forRoot(appRoutes),
+  ],
+  ..
+  })
+export class AppModule {
+}
+```
+**PersonModule** Child
+
+```typescript
+const personRoutes: Routes = [
+  {
+    path: '',
+    component: PersonsComponent
+  },
+  {
+    path: ':id',
+    component: PersonEditComponent
+  }
+];
+
+@NgModule({
+  imports: [
+    ...
+    RouterModule.forChild(personRoutes),
+    ...
+  ],
+  exports: [
+    ...
+    RouterModule
+    ...
+  ],
+
+})
+export class PersonsModule {
+}
+```
+
+### Store
+
+**AppModule** parent
+```typescript
+@NgModule({
+  ...
+  imports: [
+    ...
+    NgxsModule.forRoot([])
+    ...
+  ],
+  ...
+})
+export class AppModule {
+}
+```
+
+**PersonModule** child
+```typescript
+@NgModule({
+  imports: [
+    ...
+    NgxsModule.forFeature([PersonsState]),
+    ...
+  ],
+  ...
+})
+export class PersonsModule {
+}
+```

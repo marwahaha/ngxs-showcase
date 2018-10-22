@@ -1,3 +1,4 @@
+global['CSS'] = null;
 
 const mock = () => {
   let storage = {};
