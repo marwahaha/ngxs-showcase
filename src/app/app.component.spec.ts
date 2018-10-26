@@ -2,7 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {PersonsModule} from './modules/persons/persons.module';
-import {MaterialModule} from './commons/material/material.module';
+import {MaterialModule} from './shared/material/material.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule} from '@ngxs/store';
 
