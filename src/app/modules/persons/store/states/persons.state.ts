@@ -1,10 +1,10 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {PersonStateModel} from '../models/person-state.model';
+import {PersonsStateModel} from '../models/persons-state.model';
 import {InitPersonsState} from '../actions/persons-state.actions';
 import {Person} from '../../models/person.model';
 
 
-@State<PersonStateModel>({
+@State<PersonsStateModel>({
   name: 'persons',
   defaults: {
     persons: [],
@@ -14,18 +14,18 @@ import {Person} from '../../models/person.model';
 export class PersonsState {
 
   @Selector()
-  static persons(state: PersonStateModel): Person[] {
+  static persons(state: PersonsStateModel): Person[] {
     return state.persons;
   }
 
   // In version 3 you should use a snapshot selector
   @Selector()
-  static isLoaded(state: PersonStateModel): boolean {
+  static isLoaded(state: PersonsStateModel): boolean {
     return state.loaded;
   }
 
   @Action(InitPersonsState)
-  initState(ctx: StateContext<PersonStateModel>, action: InitPersonsState) {
+  initState(ctx: StateContext<PersonsStateModel>, action: InitPersonsState) {
     console.log('Received InitState action');
     ctx.setState({
       persons: action.persons,

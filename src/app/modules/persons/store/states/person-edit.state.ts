@@ -1,7 +1,8 @@
-import {State} from '@ngxs/store';
+import {Selector, State} from '@ngxs/store';
+import {PersonEditStateModel} from '../models/person-edit-state.model';
 
-@State({
-  name: 'person-form',
+@State<PersonEditStateModel>({
+  name: 'personEdit',
   // Those default are needed by the directive, it is a subselection of FormGroup
   defaults: {
     personEditForm: {
@@ -13,4 +14,9 @@ import {State} from '@ngxs/store';
   }
 })
 export class PersonEditState {
+
+  @Selector()
+  static getModel(state: any) {
+    return state.personEditForm.model;
+  }
 }

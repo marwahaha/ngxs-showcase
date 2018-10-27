@@ -1,6 +1,6 @@
 import {Person} from '../../models/person.model';
 
-export interface PersonStateModel {
+export interface PersonsStateModel {
   persons: Person[];
   loaded: boolean;
 }
