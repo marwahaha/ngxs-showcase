@@ -23,7 +23,10 @@
       the past.
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button type="button" color="primary" [disabled]="!personForm.valid || personForm.touched"
-          class="button" (click)="onSave()">Save
-  </button>
+  <div>
+    <button type="button" mat-raised-button color="basic" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button type="button" color="primary" [disabled]="!personForm.valid || !personForm.touched"
+            class="button" (click)="onSave()">Save
+    </button>
+  </div>
 </form>

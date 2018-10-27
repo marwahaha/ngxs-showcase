@@ -88,6 +88,12 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // close the observable subscriptions
     this.routeSubscription.unsubscribe();
-    this.formSubscription.unsubscribe();
+    if (this.formSubscription) {
+      this.formSubscription.unsubscribe();
+    }
+  }
+
+  onCancel() {
+    this.router.navigate(['/persons']);
   }
 }
