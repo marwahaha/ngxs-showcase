@@ -1,10 +1,10 @@
 import {async, TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
-import {PersonsState} from './persons-state.state';
+import {PersonsState} from './persons.state';
 import {Person} from '../../models/person.model';
-import {InitMainState} from '../actions/main-state.actions';
+import {InitPersonsState} from '../actions/main-state.actions';
 
-describe('Main State', () => {
+describe('Persons State', () => {
   let store: Store;
   const expectedPerson: Person[] = [{id: 1, name: 'premier', forename: '1'}, {
     id: 2,
@@ -25,19 +25,20 @@ describe('Main State', () => {
     store.selectOnce(state => expect(state.persons).toEqual([]));
   });
 
-  describe('InitMainState action', () => {
+  describe('InitPersonsState action', () => {
 
     it('should fill state with its content', async(() => {
-      store.dispatch(new InitMainState(expectedPerson));
+      store.dispatch(new InitPersonsState(expectedPerson));
       store.selectOnce(state => expect(state.persons).toEqual(expectedPerson));
     }));
   });
 
-  describe('Selector persons', () => {
+  describe('Selector \'PersonState.persons\'', () => {
     it('should return all the persons in the state', async(() => {
-      store.dispatch(new InitMainState(expectedPerson));
+      store.dispatch(new InitPersonsState(expectedPerson));
       store.selectOnce(state => {
-        expect(PersonsState.persons(state.persons)).toEqual(expectedPerson);
+        expect(PersonsState.persons(state)).toEqual(expectedPerson);
+        expect(PersonsState.isLoaded(state)).toEqual(true);
       });
     }));
   });

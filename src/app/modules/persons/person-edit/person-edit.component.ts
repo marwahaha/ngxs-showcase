@@ -1,29 +1,69 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
+import {Store} from '@ngxs/store';
+import {Person} from '../models/person.model';
+import {PersonsState} from '../store/states/persons.state';
+import {flatMap} from 'rxjs/operators';
+import 'rxjs/add/observable/from';
+import {PersonService} from '../services/person.service';
 
 @Component({
-  selector: 'app-person-edit',
+  selector: 'person-edit',
   templateUrl: './person-edit.component.html',
   styleUrls: ['./person-edit.component.css']
 })
-export class PersonEditComponent implements OnInit {
+export class PersonEditComponent implements OnInit, OnDestroy {
 
   personForm: FormGroup;
 
-  constructor() {
+  private routeSubscription: Subscription;
+
+  constructor(private activeRoute: ActivatedRoute, private store: Store, private service: PersonService) {
+
   }
 
   ngOnInit() {
+    this.service.loadPersons();
     this.personForm = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(2)]),
       'forename': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(2)]),
       'birthDate': new FormControl(null)
       // TODO create a custom validator for a date in the past
     });
+    this.routeSubscription = this.activeRoute.params.subscribe(
+      (params) => (<Observable<Person>>this.store.select(PersonsState.persons)
+        .pipe(
+          flatMap((persons) => {
+              console.log(persons);
+              console.log(`id = ${params['id']}`);
+              const tmp = persons.filter((person: Person) => person.id === parseInt(params['id']));
+              console.log(tmp);
+              return tmp;
+            }
+          )
+        ))
+        .subscribe(
+          person => {
+            console.log(person);
+            this.personForm.patchValue({
+              name: person.name,
+              forename: person.forename,
+            });
+          }
+        )
+    );
+
   }
 
   onSubmit() {
-    console.log(this.personForm);
+    // map the value to a Person and dispatch an action
+    console.log(this.personForm.value);
   }
 
+  ngOnDestroy(): void {
+    // close the observable subscriptions
+    this.routeSubscription.unsubscribe();
+  }
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="personForm" (ngSubmit)="onSubmit()" class="person-form">
+<form [formGroup]="personForm" ngxsForm="person-form.personEditForm" (ngSubmit)="onSubmit()" class="person-form">
   <mat-form-field class="person-form-item">
     <mat-label>Name</mat-label>
     <input matInput placeholder="name" formControlName="name"/>

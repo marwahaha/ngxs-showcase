@@ -5,16 +5,16 @@ import {Person} from './models/person.model';
 import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule, Store} from '@ngxs/store';
-import {PersonsState} from './store/states/persons-state.state';
+import {PersonsState} from './store/states/persons.state';
 import {PersonService} from './services/person.service';
-import {InitMainState} from './store/actions/main-state.actions';
+import {InitPersonsState} from './store/actions/main-state.actions';
 
 describe('PersonsComponent', () => {
   let component: PersonsComponent;
   let fixture: ComponentFixture<PersonsComponent>;
 
   let store: Store;
-  const loadPersons = jest.fn();
+  const loadPersonsFunction = jest.fn();
 
   setupTestBed({
     declarations: [PersonsComponent],
@@ -29,7 +29,7 @@ describe('PersonsComponent', () => {
       {
         provide: PersonService,
         useValue: {
-          loadPersons: loadPersons
+          loadPersons: loadPersonsFunction
         }
       }
     ]
@@ -38,7 +38,7 @@ describe('PersonsComponent', () => {
   beforeEach(() => {
     TestBed.compileComponents();
     store = TestBed.get(Store);
-    loadPersons.mockReset();
+    loadPersonsFunction.mockReset();
   });
 
   beforeEach(() => {
@@ -52,7 +52,7 @@ describe('PersonsComponent', () => {
     })
   );
   it('should intialize the Store', () => {
-    expect(loadPersons.mock.calls.length).toBe(1);
+    expect(loadPersonsFunction.mock.calls.length).toBe(1);
   });
 
   describe('persons$', () => {
@@ -60,7 +60,7 @@ describe('PersonsComponent', () => {
     const expectedPerson: Person[] = [{id: 1, name: 'premier', forename: '1'}, {id: 2, name: 'second', forename: '2'}];
 
     it('should be initialized with the content of the State', async((done) => {
-      store.dispatch(new InitMainState(expectedPerson));
+      store.dispatch(new InitPersonsState(expectedPerson));
       const persons: Person[] = [];
       component.persons$.subscribe(
         (person) => persons.push(person),
