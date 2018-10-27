@@ -1,4 +1,4 @@
-<form [formGroup]="personForm" ngxsForm="personEdit.personEditForm" (ngSubmit)="onSave()" class="person-form">
+<form [formGroup]="personForm" ngxsForm="personEdit.personEditForm" class="person-form">
   <input type="hidden" formControlName="id"/>
   <mat-form-field class="person-form-item">
     <mat-label>Name</mat-label>
@@ -23,5 +23,7 @@
       the past.
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="!personForm.valid" class="button">Save</button>
+  <button mat-raised-button type="button" color="primary" [disabled]="!personForm.valid || personForm.touched"
+          class="button" (click)="onSave()">Save
+  </button>
 </form>

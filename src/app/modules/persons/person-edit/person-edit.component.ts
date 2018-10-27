@@ -25,6 +25,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   personForm: FormGroup;
 
   private routeSubscription: Subscription;
+  private formSubscription: Subscription;
 
   constructor(private activeRoute: ActivatedRoute, private store: Store, private service: PersonService, private router: Router) {
 
@@ -71,7 +72,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
 
   onSave() {
     // map the value to a Person and dispatch an action
-    this.formModel$.subscribe(
+    this.formSubscription = this.formModel$.subscribe(
       model => {
         console.log(`Person Model to Save : ${JSON.stringify(model)}`);
         this.store.dispatch(new ModifyPerson({
@@ -87,5 +88,6 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // close the observable subscriptions
     this.routeSubscription.unsubscribe();
+    this.formSubscription.unsubscribe();
   }
 }
