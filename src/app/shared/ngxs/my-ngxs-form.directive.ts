@@ -24,6 +24,7 @@ export class MyNgxsFormDirective {
   }
 
   ngOnInit() {
+    console.log('init the form directive');
     this._store
       .select(state => getValue(state, `${this.path}.model`))
       .pipe(takeUntil(this._destroy$))
@@ -86,13 +87,14 @@ export class MyNgxsFormDirective {
       });
 
     this._formGroupDirective.valueChanges.pipe(debounceTime(this.debounce), takeUntil(this._destroy$)).subscribe(() => {
+      console.log('Value Change !');
       const value = this._formGroupDirective.control.getRawValue();
       this._updating = true;
       this._store
         .dispatch([
           new UpdateFormValue({
             path: this.path,
-            value
+            value: value
           }),
           new UpdateFormDirty({
             path: this.path,

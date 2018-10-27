@@ -6,3 +6,11 @@ export class InitPersonsState {
   constructor(public persons: Person[]) {
   }
 }
+
+export class ModifyPerson {
+  static readonly type = '[Person Edit Form] Modifiy Person';
+
+  constructor(public person: Person) {
+
+  }
+}

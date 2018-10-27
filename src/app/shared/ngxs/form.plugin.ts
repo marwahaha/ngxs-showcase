@@ -16,6 +16,7 @@ export class NgxsFormPlugin implements NgxsPlugin {
 
   handle(state, event, next) {
     const type = getActionTypeFromInstance(event);
+    console.log(`Form plugin received action of type : ${type}`);
 
     let nextState = state;
 

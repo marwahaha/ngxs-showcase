@@ -1,13 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
-import {Store} from '@ngxs/store';
+import {Select, Store} from '@ngxs/store';
 import {Person} from '../models/person.model';
 import {PersonsState} from '../store/states/persons.state';
 import {flatMap} from 'rxjs/operators';
 import 'rxjs/add/observable/from';
 import {PersonService} from '../services/person.service';
+import {PersonEditState} from '../store/states/person-edit.state';
+import {ModifyPerson} from '../store/actions/persons-state.actions';
+import {MatGridTileFooterCssMatStyler} from '@angular/material';
 
 @Component({
   selector: 'person-edit',
@@ -16,11 +19,14 @@ import {PersonService} from '../services/person.service';
 })
 export class PersonEditComponent implements OnInit, OnDestroy {
 
+  @Select(PersonEditState.getModel)
+  formModel$;
+
   personForm: FormGroup;
 
   private routeSubscription: Subscription;
 
-  constructor(private activeRoute: ActivatedRoute, private store: Store, private service: PersonService) {
+  constructor(private activeRoute: ActivatedRoute, private store: Store, private service: PersonService, private router: Router) {
 
   }
 
@@ -29,6 +35,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
     this.service.loadPersons();
     // create the reactive form
     this.personForm = new FormGroup({
+      'id': new FormControl(null),
       'name': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(2)]),
       'forename': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(2)]),
       'birthDate': new FormControl(null)
@@ -49,9 +56,10 @@ export class PersonEditComponent implements OnInit, OnDestroy {
         ))
         .subscribe(
           person => {
-            console.log(person);
+            console.log(`Person to edit from the store : ${JSON.stringify(person)}`);
             // Map the found person to the form
             this.personForm.patchValue({
+              id: person.id,
               name: person.name,
               forename: person.forename,
             });
@@ -61,9 +69,19 @@ export class PersonEditComponent implements OnInit, OnDestroy {
 
   }
 
-  onSubmit() {
+  onSave() {
     // map the value to a Person and dispatch an action
-    console.log(this.personForm.value);
+    this.formModel$.subscribe(
+      model => {
+        console.log(`Person Model to Save : ${JSON.stringify(model)}`)
+        this.store.dispatch(new ModifyPerson({
+          id: model.id,
+          name: model.name,
+          forename: model.forename
+        }));
+        this.router.navigate(['/persons'])
+      }
+    )
   }
 
   ngOnDestroy(): void {
