@@ -7,6 +7,7 @@ import {CoreModule} from './core/core.module';
 import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxsFormPluginModule} from './shared/ngxs/form.module';
 
 const appRoutes: Routes = [
   {
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     MaterialModule,
     CoreModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot([])
+    NgxsModule.forRoot([]),
+    NgxsFormPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
