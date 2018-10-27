@@ -25,13 +25,16 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // load person if not yet done
     this.service.loadPersons();
+    // create the reactive form
     this.personForm = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(2)]),
       'forename': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(2)]),
       'birthDate': new FormControl(null)
       // TODO create a custom validator for a date in the past
     });
+    // Read the id from the URL and find the corresponding person in the store
     this.routeSubscription = this.activeRoute.params.subscribe(
       (params) => (<Observable<Person>>this.store.select(PersonsState.persons)
         .pipe(
@@ -47,6 +50,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
         .subscribe(
           person => {
             console.log(person);
+            // Map the found person to the form
             this.personForm.patchValue({
               name: person.name,
               forename: person.forename,
