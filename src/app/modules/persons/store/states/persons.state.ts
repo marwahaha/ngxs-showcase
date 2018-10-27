@@ -1,6 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {PersonStateModel} from '../models/person-state.model';
-import {InitPersonsState} from '../actions/main-state.actions';
+import {InitPersonsState} from '../actions/persons-state.actions';
 import {Person} from '../../models/person.model';
 
 

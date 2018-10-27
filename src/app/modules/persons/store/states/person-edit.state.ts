@@ -13,6 +13,4 @@ import {State} from '@ngxs/store';
   }
 })
 export class PersonEditState {
-
-
 }

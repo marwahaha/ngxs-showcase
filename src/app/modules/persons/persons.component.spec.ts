@@ -7,7 +7,8 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './store/states/persons.state';
 import {PersonService} from './services/person.service';
-import {InitPersonsState} from './store/actions/main-state.actions';
+import {InitPersonsState} from './store/actions/persons-state.actions';
+import {MaterialModule} from '../../shared/material/material.module';
 
 describe('PersonsComponent', () => {
   let component: PersonsComponent;
@@ -19,9 +20,7 @@ describe('PersonsComponent', () => {
   setupTestBed({
     declarations: [PersonsComponent],
     imports: [
-      MatCardModule,
-      MatListModule,
-      MatIconModule,
+      MaterialModule,
       RouterTestingModule,
       NgxsModule.forRoot([PersonsState])
     ],

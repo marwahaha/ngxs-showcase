@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
-  MatCardModule, MatDatepickerModule,
+  MatCardModule,
+  MatDatepickerModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule,
+  MatIconModule,
+  MatInputModule,
   MatListModule,
   MatSidenavModule
 } from '@angular/material';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 
 @NgModule({
@@ -16,7 +17,6 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
   exports: [
     MatButtonModule,
     MatSidenavModule,
-    NoopAnimationsModule,
     MatListModule,
     MatCardModule,
     MatIconModule,

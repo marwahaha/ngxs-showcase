@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {Person} from '../models/person.model';
-import {InitPersonsState} from '../store/actions/main-state.actions';
+import {InitPersonsState} from '../store/actions/persons-state.actions';
 import {Store} from '@ngxs/store';
 import {PersonsState} from '../store/states/persons.state';
 

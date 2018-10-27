@@ -2,7 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './persons.state';
 import {Person} from '../../models/person.model';
-import {InitPersonsState} from '../actions/main-state.actions';
+import {InitPersonsState} from '../actions/persons-state.actions';
 
 describe('Persons State', () => {
   let store: Store;

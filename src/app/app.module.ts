@@ -1,4 +1,3 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 
@@ -7,6 +6,7 @@ import {MaterialModule} from './shared/material/material.module';
 import {CoreModule} from './core/core.module';
 import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {
@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    NoopAnimationsModule,
     MaterialModule,
     CoreModule,
     RouterModule.forRoot(appRoutes),
