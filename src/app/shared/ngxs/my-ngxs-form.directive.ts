@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Directive, Input} from '@angular/core';
-import {Subject} from 'rxjs';
+import {ChangeDetectorRef, Directive, Input, OnDestroy, OnInit} from '@angular/core';
 import {getValue, Store} from '@ngxs/store';
 import {FormGroupDirective} from '@angular/forms';
 import {debounceTime, first, takeUntil} from 'rxjs/operators';
 import {UpdateForm, UpdateFormDirty, UpdateFormErrors, UpdateFormStatus, UpdateFormValue} from './actions';
+import {Subject} from 'rxjs/Subject';
 
 /**
  * Imported from https://github.com/ngxs/store/blob/v3.2.0/packages/form-plugin/src/directive.ts
@@ -11,7 +11,7 @@ import {UpdateForm, UpdateFormDirty, UpdateFormErrors, UpdateFormStatus, UpdateF
 @Directive({
   selector: '[ngxsForm]'
 })
-export class MyNgxsFormDirective {
+export class MyNgxsFormDirective implements OnInit, OnDestroy {
 
   @Input('ngxsForm') path: string;
   @Input('ngxsFormDebounce') debounce = 100;

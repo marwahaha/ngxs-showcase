@@ -39,7 +39,7 @@ describe('PersonEditState', () => {
       }));
       store.selectOnce(PersonEditState.getModel).subscribe(
         model => expect(model).toEqual(expectedValue)
-      )
+      );
     });
 
   });

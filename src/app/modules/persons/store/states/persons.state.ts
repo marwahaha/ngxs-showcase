@@ -40,7 +40,7 @@ export class PersonsState {
     const updatePerson = updatedPersons.find((person) => person.id === action.person.id);
     const index = updatedPersons.indexOf(updatePerson);
     if (index === -1) {
-      throw new Error(`The person with ID :${action.person.id} is not loaded ! `)
+      throw new Error(`The person with ID :${action.person.id} is not loaded ! `);
     }
     updatedPersons[index] = action.person;
     ctx.patchState({persons: updatedPersons});

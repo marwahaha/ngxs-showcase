@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 import {Select, Store} from '@ngxs/store';
 import {Person} from '../models/person.model';
 import {PersonsState} from '../store/states/persons.state';
@@ -10,7 +11,6 @@ import 'rxjs/add/observable/from';
 import {PersonService} from '../services/person.service';
 import {PersonEditState} from '../store/states/person-edit.state';
 import {ModifyPerson} from '../store/actions/persons-state.actions';
-import {MatGridTileFooterCssMatStyler} from '@angular/material';
 
 @Component({
   selector: 'person-edit',
@@ -73,15 +73,15 @@ export class PersonEditComponent implements OnInit, OnDestroy {
     // map the value to a Person and dispatch an action
     this.formModel$.subscribe(
       model => {
-        console.log(`Person Model to Save : ${JSON.stringify(model)}`)
+        console.log(`Person Model to Save : ${JSON.stringify(model)}`);
         this.store.dispatch(new ModifyPerson({
           id: model.id,
           name: model.name,
           forename: model.forename
         }));
-        this.router.navigate(['/persons'])
+        this.router.navigate(['/persons']);
       }
-    )
+    );
   }
 
   ngOnDestroy(): void {

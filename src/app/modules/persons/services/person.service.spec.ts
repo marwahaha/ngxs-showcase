@@ -1,4 +1,4 @@
-import {async, inject, TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 
 import {PersonService} from './person.service';
 import {Store} from '@ngxs/store';
@@ -28,9 +28,9 @@ describe('PersonService', () => {
     service = TestBed.get(PersonService)
   );
 
-  it('should be created', inject([PersonService], (service: PersonService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
   describe('getPersons$', () => {
 

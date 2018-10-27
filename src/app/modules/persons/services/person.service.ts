@@ -28,7 +28,7 @@ export class PersonService {
             },
             (error) => console.log(error),
             () => this.store.dispatch(new InitPersonsState(persons))
-          )
+          );
         }
       }
     );

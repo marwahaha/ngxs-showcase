@@ -56,7 +56,7 @@ describe('Persons State', () => {
           expect(persons).toContain(modifiedPerson);
           expect(persons).not.toContain(personOne);
         }
-      )
+      );
     }));
 
   });
