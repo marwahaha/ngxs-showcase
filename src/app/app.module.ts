@@ -2,12 +2,11 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {MaterialModule} from './shared/material/material.module';
-import {CoreModule} from './core/core.module';
+import {MaterialModule, NgxsFormPluginModule} from '@shared';
+import {CoreModule} from '@core';
 import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {NgxsFormPluginModule} from './shared/ngxs/form.module';
 
 const appRoutes: Routes = [
   {

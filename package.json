@@ -45,6 +45,10 @@
   },
   "jest": {
     "preset": "jest-preset-angular",
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",
+    "moduleNameMapper": {
+      "@shared": "<rootDir>/src/app/shared/index",
+      "@core": "<rootDir>/src/app/core/index"
+    }
   }
 }

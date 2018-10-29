@@ -252,3 +252,52 @@ export class AppModule {
 export class PersonsModule {
 }
 ```
+
+## Barrels & Paths
+
+### Barrel
+In _shared_ folder add **index.ts** file :
+```typescript
+export {MaterialModule} from './material/material.module';
+export {
+  SetFormDirty,
+  SetFormDisabled,
+  SetFormEnabled,
+  SetFormPristine,
+  UpdateForm,
+  UpdateFormDirty,
+  UpdateFormErrors,
+  UpdateFormStatus,
+  UpdateFormValue
+} from './ngxs/actions';
+export {NgxsFormPluginModule} from './ngxs/form.module';
+export {MyNgxsFormDirective} from './ngxs/my-ngxs-form.directive';
+export {NgxsFormPlugin} from './ngxs/form.plugin';
+
+```
+**IMPORTANT** : Angular Module need named export don't use the * to export your objects.
+
+### Paths
+In **tsconfig.json** add a path to the previous barrel :
+```json
+    "baseUrl": "src",
+    "paths": {
+      "@shared": ["app/shared/index"]
+    },
+```
+**IMPORTANT** : to use path you have to define baseUrl as well.
+
+In **package.json** add the path to _Jest_ so the tests know the paths too :
+
+```json
+    "moduleNameMapper": {
+      "@shared": "<rootDir>/src/app/shared/index"
+    }
+```
+
+Now you can import all the content of the shared folder with only _@shared_. Ex :
+```typescript
+import {MaterialModule, NgxsFormPluginModule} from '@shared'
+```
+
+

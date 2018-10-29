@@ -7,10 +7,9 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
 import {PersonsState} from './store/states/persons.state';
 import {ReactiveFormsModule} from '@angular/forms';
-import {CoreModule} from '../../core/core.module';
+import {CoreModule} from '@core';
 import {PersonEditState} from './store/states/person-edit.state';
-import {NgxsFormPluginModule} from '../../shared/ngxs/form.module';
-import {MaterialModule} from '../../shared/material/material.module';
+import {MaterialModule, NgxsFormPluginModule} from '@shared';
 
 export const personRoutes: Routes = [
   {
