@@ -87,9 +87,9 @@ export class MyNgxsFormDirective implements OnInit, OnDestroy {
       });
 
     this._formGroupDirective.valueChanges.pipe(debounceTime(this.debounce), takeUntil(this._destroy$)).subscribe(() => {
-      console.log('Value Change !');
       const value = this._formGroupDirective.control.getRawValue();
       this._updating = true;
+      console.log(`Value Change ! New Value : ${JSON.stringify(value)}`);
       this._store
         .dispatch([
           new UpdateFormValue({

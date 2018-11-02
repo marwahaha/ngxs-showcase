@@ -2,6 +2,7 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {PersonsStateModel} from '../models/persons-state.model';
 import {InitPersonsState, ModifyPerson} from '../actions/persons-state.actions';
 import {Person} from '../../models/person.model';
+import {Observable} from 'rxjs';
 
 
 @State<PersonsStateModel>({
@@ -24,6 +25,13 @@ export class PersonsState {
     return state.loaded;
   }
 
+  @Selector()
+  static findPerson(state: PersonsStateModel): (id) => Person {
+    return (id: number) => {
+      return state.persons.filter(person => person.id === id)[0];
+    };
+  }
+
   @Action(InitPersonsState)
   initState(ctx: StateContext<PersonsStateModel>, action: InitPersonsState) {
     console.log('Received InitState action');
@@ -31,6 +39,7 @@ export class PersonsState {
       persons: action.persons,
       loaded: true
     });
+    console.log(`The state is now : ${JSON.stringify(ctx.getState())}`);
   }
 
   @Action(ModifyPerson)

@@ -35,7 +35,6 @@ describe('PersonsComponent', () => {
   });
 
   beforeEach(() => {
-    TestBed.compileComponents();
     store = TestBed.get(Store);
     loadPersonsFunction.mockReset();
   });
