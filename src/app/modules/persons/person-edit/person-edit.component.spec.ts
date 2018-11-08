@@ -5,22 +5,25 @@ import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/t
 import {PersonsComponent} from '../persons.component';
 import {MaterialModule} from '@shared';
 import {ReactiveFormsModule} from '@angular/forms';
-import {Store} from '@ngxs/store';
+import {NgxsModule, Store} from '@ngxs/store';
 import {PersonService} from '../services/person.service';
 import {Person} from '../models/person.model';
 import {RouterTestingModule} from '@angular/router/testing';
 import {By} from '@angular/platform-browser';
 import {of} from 'rxjs/observable/of';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {PersonEditState} from '../store/states/person-edit.state';
+import {PersonsState} from '../store/states/persons.state';
 
 describe('PersonEditComponent', () => {
 
   let location: Location;
   let component: PersonEditComponent;
   let fixture: ComponentFixture<PersonEditComponent>;
+  let store: Store;
+  let selectFunction;
+  let dispatchFunction;
 
-  const dispatchFunction = jest.fn();
-  const selectFunction = jest.fn();
   const loadPersonsFunction = jest.fn();
   const navigateFunction = jest.fn();
 
@@ -34,16 +37,10 @@ describe('PersonEditComponent', () => {
         MaterialModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NgxsModule.forRoot([PersonEditState, PersonsState])
       ],
       providers: [
-        {
-          provide: Store,
-          useValue: {
-            dispatch: dispatchFunction,
-            select: selectFunction
-          }
-        },
         {
           provide: PersonService,
           useValue: {
@@ -74,13 +71,16 @@ describe('PersonEditComponent', () => {
     fixture = TestBed.createComponent(PersonEditComponent);
     component = fixture.componentInstance;
     location = TestBed.get(Location);
-    selectFunction.mockReset();
-    dispatchFunction.mockReset();
     const expectedPerson1: Person = {
       id: 1,
       name: 'Martins',
       forename: 'Robert'
     };
+    store = TestBed.get(Store);
+    selectFunction = jest.spyOn(store, 'select');
+    dispatchFunction = jest.spyOn(store, 'dispatch');
+    selectFunction.mockReset();
+    dispatchFunction.mockReset();
     selectFunction.mockReturnValueOnce(of((id) => {
       expect(id).toEqual(1);
       return expectedPerson1
@@ -166,16 +166,16 @@ describe('PersonEditComponent', () => {
   });
 
   // Problem with the selector of ngxs
-  xdescribe('onSave', () => {
+  describe('onSave', () => {
 
     beforeEach(() => {
       navigateFunction.mockReset();
+      dispatchFunction.mockReset();
     });
 
     it('should dispatch a modify person action', () => {
       component.onSave();
       expect(dispatchFunction.mock.calls.length).toEqual(1);
-      // expect(dispatchFunction.mock.calls.pop())
     });
 
     it('should navigate back to /persons', function () {
