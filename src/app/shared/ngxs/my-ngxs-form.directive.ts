@@ -128,6 +128,7 @@ export class MyNgxsFormDirective implements OnInit, OnDestroy {
     this._destroy$.complete();
 
     if (this.clearDestroy) {
+      console.log('Reset State after destroy');
       this._store.dispatch(
         new UpdateForm({
           path: this.path,

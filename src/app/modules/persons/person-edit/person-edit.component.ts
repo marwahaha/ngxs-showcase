@@ -10,6 +10,8 @@ import {ModifyPerson} from '../store/actions/persons-state.actions';
 import {PersonsState} from '../store/states/persons.state';
 import {first, map} from 'rxjs/operators';
 import {Person} from '../models/person.model';
+import {UpdateForm} from '@shared';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'person-edit',
@@ -19,7 +21,7 @@ import {Person} from '../models/person.model';
 export class PersonEditComponent implements OnInit, OnDestroy {
 
   @Select(PersonEditState.getModel)
-  formModel$;
+  formModel$: Observable<any>;
 
   personForm: FormGroup;
 
@@ -80,6 +82,14 @@ export class PersonEditComponent implements OnInit, OnDestroy {
     if (this.formSubscription) {
       this.formSubscription.unsubscribe();
     }
+    // reset the form
+    this.store.dispatch(new UpdateForm({
+      path: 'personEdit.personEditForm',
+      value: null,
+      dirty: null,
+      status: null,
+      errors: null
+    }));
   }
 
   onCancel() {
