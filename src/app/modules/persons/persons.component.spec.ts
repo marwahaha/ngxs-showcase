@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PersonsComponent} from './persons.component';
 import {Person} from './models/person.model';
-import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './store/states/persons.state';
@@ -49,7 +48,7 @@ describe('PersonsComponent', () => {
       expect(component).toBeTruthy();
     })
   );
-  it('should intialize the Store', () => {
+  it('should initialize the Store', () => {
     expect(loadPersonsFunction.mock.calls.length).toBe(1);
   });
 
