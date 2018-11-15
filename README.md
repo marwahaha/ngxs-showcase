@@ -300,4 +300,8 @@ Now you can import all the content of the shared folder with only _@shared_. Ex 
 import {MaterialModule, NgxsFormPluginModule} from '@shared'
 ```
 
+# TODOs
+ [ ] do a Banner that show the person currently in edition
+ [ ] addresses
+ [ ] for addresses do a form of forms with inline edit mapped on one only state
 
