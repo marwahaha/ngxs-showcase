@@ -1,18 +1,18 @@
-.main-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #eee;
-  height: auto;
+.side-container {
+  background-color: #ffffff;
 }
 
-.main-content {
-  margin: 1em;
-  padding: 1em;
+.side-content {
+  background-color: #f9f9f9;
 }
 
 .side-menu {
   padding: 1em;
+}
+
+.banner {
+  min-height: 5em;
+  background-color: #ffffff;
+  margin: 0 auto;
+  box-shadow: inset 0px -15px 10px -15px #111;
 }

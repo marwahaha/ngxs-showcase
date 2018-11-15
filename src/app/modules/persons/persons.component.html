@@ -1,8 +1,7 @@
-<div>
-  <mat-list class="person-list">
-    <mat-list-item *ngFor="let person of persons$ | async" class="person-item">
-      <a [routerLink]="['/persons', person.id]">
-        <mat-card class="person-tile">
+<mat-list class="person-list">
+  <mat-list-item *ngFor="let person of persons$ | async" class="person-item">
+    <a [routerLink]="['/persons', person.id]">
+      <mat-card class="person-tile">
         <mat-card-header>
           <mat-icon>perm_identity</mat-icon>
         </mat-card-header>
@@ -11,7 +10,6 @@
           <p>{{person.name}}</p>
         </mat-card-content>
       </mat-card>
-      </a>
-    </mat-list-item>
-  </mat-list>
-</div>
+    </a>
+  </mat-list-item>
+</mat-list>

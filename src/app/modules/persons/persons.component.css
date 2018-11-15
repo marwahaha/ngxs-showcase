@@ -1,18 +1,16 @@
 .person-item {
-  align-self: flex-start;
+  height: 100% !important;
 }
 
 .person-list {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  padding-top: 0;
 }
 
 .person-tile {
-  padding: 1em;
+  margin: 1em;
   min-width: 80px;
+  display: block;
 }
 
 a {
