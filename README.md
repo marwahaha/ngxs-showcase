@@ -301,7 +301,7 @@ import {MaterialModule, NgxsFormPluginModule} from '@shared'
 ```
 
 # TODOs
- [ ] do a Banner that show the person currently in edition
- [ ] addresses
- [ ] for addresses do a form of forms with inline edit mapped on one only state
+ -[ ] do a Banner that show the person currently in edition
+ -[ ] addresses
+ -[ ] for addresses do a form of forms with inline edit mapped on one only state
 
