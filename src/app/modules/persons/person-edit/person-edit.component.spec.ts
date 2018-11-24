@@ -181,6 +181,7 @@ describe('PersonEditComponent', () => {
     it('should navigate back to /persons', function () {
       component.onSave();
       expect(navigateFunction.mock.calls.length).toEqual(1);
+      expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons']);
     });
 
   });
@@ -194,6 +195,7 @@ describe('PersonEditComponent', () => {
     it('should navigate back to /persons', function () {
       component.onCancel();
       expect(navigateFunction.mock.calls.length).toEqual(1);
+      expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons']);
     });
   });
 });
