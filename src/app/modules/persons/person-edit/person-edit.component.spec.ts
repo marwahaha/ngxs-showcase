@@ -14,6 +14,7 @@ import {of} from 'rxjs/observable/of';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PersonEditState} from '../store/states/person-edit.state';
 import {PersonsState} from '../store/states/persons.state';
+import {NewPerson} from '../store/actions/persons-state.actions';
 
 describe('PersonEditComponent', () => {
 
@@ -102,6 +103,7 @@ describe('PersonEditComponent', () => {
       component.ngOnInit();
       expect(loadPersonsFunction.mock.calls.length).toEqual(1);
       expect(selectFunction.mock.calls.length).toEqual(1);
+      expect(component.editMode).toBeTruthy();
     });
 
     it('should populate the form with the values of the correct person', () => {
@@ -113,6 +115,14 @@ describe('PersonEditComponent', () => {
         forename: 'Robert',
         birthDate: null
       })
+    });
+
+    it('should set edit to true', () => {
+      const activeRoute: ActivatedRoute = TestBed.get(ActivatedRoute);
+      activeRoute.snapshot.params['id'] = 'add';
+      component.ngOnInit();
+      expect(component.editMode).toBeFalsy();
+      activeRoute.snapshot.params['id'] = '1'; //reset the mock for further test
     });
   });
 
@@ -146,6 +156,7 @@ describe('PersonEditComponent', () => {
     it('should call onSave when Save button is clicked', fakeAsync(() => {
       jest.spyOn(component, 'onSave');
       component.personForm.markAsTouched();
+      expect(component.editMode).toBeTruthy();
       expect(component.personForm.valid).toBe(true);
       expect(component.personForm.touched).toBe(true);
       fixture.detectChanges();
@@ -178,7 +189,7 @@ describe('PersonEditComponent', () => {
       expect(dispatchFunction.mock.calls.length).toEqual(1);
     });
 
-    it('should navigate back to /persons', function () {
+    it('should navigate back to /persons', () => {
       component.onSave();
       expect(navigateFunction.mock.calls.length).toEqual(1);
       expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons']);
@@ -192,10 +203,30 @@ describe('PersonEditComponent', () => {
       navigateFunction.mockReset();
     });
 
-    it('should navigate back to /persons', function () {
+    it('should navigate back to /persons', () => {
       component.onCancel();
       expect(navigateFunction.mock.calls.length).toEqual(1);
       expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons']);
     });
+  });
+
+  describe('onAdd', () => {
+    beforeEach(() => {
+      navigateFunction.mockReset();
+      dispatchFunction.mockReset();
+    });
+
+    it('should dispatch newPerson action', () => {
+      component.onAdd();
+      expect(dispatchFunction.mock.calls.length).toEqual(1);
+      expect(dispatchFunction.mock.calls[0][0]).toBeInstanceOf(NewPerson);
+    });
+
+    it('should navigate back to /persons', () => {
+      component.onAdd();
+      expect(navigateFunction.mock.calls.length).toEqual(1);
+      expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons']);
+    });
+
   });
 });

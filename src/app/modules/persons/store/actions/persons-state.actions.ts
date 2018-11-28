@@ -14,3 +14,11 @@ export class ModifyPerson {
 
   }
 }
+
+export class NewPerson {
+  static readonly type = '[Person Edit Form] New Person'
+
+  constructor(public person: Person) {
+
+  }
+}

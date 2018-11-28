@@ -7,7 +7,8 @@ import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './store/states/persons.state';
 import {PersonService} from './services/person.service';
 import {InitPersonsState} from './store/actions/persons-state.actions';
-import {MaterialModule} from '../../shared/material/material.module';
+import {MaterialModule} from '@shared';
+import {Router} from '@angular/router';
 
 describe('PersonsComponent', () => {
   let component: PersonsComponent;
@@ -15,6 +16,7 @@ describe('PersonsComponent', () => {
 
   let store: Store;
   const loadPersonsFunction = jest.fn();
+  const navigateFunction = jest.fn();
 
   setupTestBed({
     declarations: [PersonsComponent],
@@ -29,6 +31,12 @@ describe('PersonsComponent', () => {
         useValue: {
           loadPersons: loadPersonsFunction
         }
+      },
+      {
+        provide: Router,
+        useValue: {
+          navigate: navigateFunction
+        }
       }
     ]
   });
@@ -41,7 +49,7 @@ describe('PersonsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PersonsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', async((done) => {
@@ -49,6 +57,7 @@ describe('PersonsComponent', () => {
     })
   );
   it('should initialize the Store', () => {
+    fixture.detectChanges();
     expect(loadPersonsFunction.mock.calls.length).toBe(1);
   });
 
@@ -65,6 +74,14 @@ describe('PersonsComponent', () => {
         () => expect(persons).toEqual(expectedPerson)
       );
     }));
+  });
+
+  describe('onAdd', () => {
+    it('should navigate to person edition component in addition mode', () => {
+      component.onAdd();
+      expect(navigateFunction.mock.calls.length).toEqual(1);
+      expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons', 'add']);
+    });
   });
 
 });

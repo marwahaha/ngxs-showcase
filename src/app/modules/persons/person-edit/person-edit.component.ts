@@ -6,7 +6,7 @@ import {Select, Store} from '@ngxs/store';
 import 'rxjs/add/observable/from';
 import {PersonService} from '../services/person.service';
 import {PersonEditState} from '../store/states/person-edit.state';
-import {ModifyPerson} from '../store/actions/persons-state.actions';
+import {ModifyPerson, NewPerson} from '../store/actions/persons-state.actions';
 import {PersonsState} from '../store/states/persons.state';
 import {first, map} from 'rxjs/operators';
 import {Person} from '../models/person.model';
@@ -24,6 +24,8 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   formModel$: Observable<any>;
 
   personForm: FormGroup;
+
+  editMode: boolean = true;
 
   private formSubscription: Subscription;
 
@@ -43,23 +45,27 @@ export class PersonEditComponent implements OnInit, OnDestroy {
       // TODO create a custom validator for a date in the past
     });
     // Read the id from the URL and find the corresponding person in the store
-    const idParam = parseInt(this.activeRoute.snapshot.params['id']);
-    this.store.select(PersonsState.findPerson)
-      .pipe(
-        map(filterFn => filterFn(idParam)),
-        first()
-      )
-      .subscribe(
-        (person: Person) => {
-          console.log(`Person to edit in the form : ${JSON.stringify(person)}`);
-          // Map the found person to the form
-          this.personForm.patchValue({
-            id: person.id,
-            name: person.name,
-            forename: person.forename,
-          });
-        }
-      );
+    let idParam = this.activeRoute.snapshot.params['id'];
+    if (idParam === 'add') {
+      this.editMode = false;
+    } else {
+      this.store.select(PersonsState.findPerson)
+        .pipe(
+          map(filterFn => filterFn(parseInt(idParam))),
+          first()
+        )
+        .subscribe(
+          (person: Person) => {
+            console.log(`Person to edit in the form : ${JSON.stringify(person)}`);
+            // Map the found person to the form
+            this.personForm.patchValue({
+              id: person.id,
+              name: person.name,
+              forename: person.forename,
+            });
+          }
+        );
+    }
   }
 
   onSave() {
@@ -72,7 +78,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
           name: model.name,
           forename: model.forename
         }));
-        this.router.navigate(['/persons']);
+        this.navigateBackToPersons()
       }
     );
   }
@@ -83,6 +89,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
       this.formSubscription.unsubscribe();
     }
     // reset the form
+    // FIXME If I let the directive doing that, the form is empty before we read the content to dispatch an action
     this.store.dispatch(new UpdateForm({
       path: 'personEdit.personEditForm',
       value: null,
@@ -93,6 +100,24 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
+    this.navigateBackToPersons()
+  }
+
+  onAdd() {
+    this.formSubscription = this.formModel$.subscribe(
+      model => {
+        console.log(`Person Model to Add : ${JSON.stringify(model)}`);
+        this.store.dispatch(new NewPerson({
+          id: model.id,
+          name: model.name,
+          forename: model.forename
+        }));
+        this.navigateBackToPersons()
+      }
+    );
+  }
+
+  private navigateBackToPersons(): void {
     this.router.navigate(['/persons']);
   }
 }
