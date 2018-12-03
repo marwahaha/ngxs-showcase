@@ -23,7 +23,7 @@ import {PersonUnselected} from '../../../../shared/store/actions/app-state.actio
 export class PersonsState {
 
   @Selector()
-  static persons(state: PersonsStateModel): Person[] {
+  static getPersons(state: PersonsStateModel): Person[] {
     return state.persons;
   }
 

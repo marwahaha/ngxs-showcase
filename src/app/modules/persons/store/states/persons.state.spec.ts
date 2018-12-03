@@ -24,22 +24,22 @@ describe('Persons State', () => {
   });
 
   it('should init to empty', () => {
-    store.selectOnce(state => expect(state.persons).toEqual([]));
+    store.selectOnce(state => expect(state.getPersons).toEqual([]));
   });
 
   describe('InitPersonsState action', () => {
 
     it('should fill state with its content', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
-      store.selectOnce(state => expect(state.persons).toEqual(expectedPersons));
+      store.selectOnce(state => expect(state.getPersons).toEqual(expectedPersons));
     }));
   });
 
-  describe('Selector \'PersonState.persons\'', () => {
+  describe('Selector \'PersonState.getPersons\'', () => {
     it('should return all the persons in the state', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
       store.selectOnce((state: PersonsStateModel) => {
-        expect(PersonsState.persons(state)).toEqual(expectedPersons);
+        expect(PersonsState.getPersons(state)).toEqual(expectedPersons);
         expect(PersonsState.isLoaded(state)).toEqual(true);
         expect(state.maxId).toEqual(2);
       });
@@ -53,7 +53,7 @@ describe('Persons State', () => {
     it('should replace an existing person', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
       store.dispatch(new ModifyPerson(modifiedPerson));
-      store.selectOnce(PersonsState.persons).subscribe(
+      store.selectOnce(PersonsState.getPersons).subscribe(
         persons => {
           expect(persons).toContain(modifiedPerson);
           expect(persons).not.toContain(personOne);

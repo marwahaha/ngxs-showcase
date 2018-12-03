@@ -14,7 +14,7 @@ import {OpenAddingMode} from './store/actions/persons-state.actions';
 })
 export class PersonsComponent implements OnInit {
 
-  @Select(PersonsState.persons)
+  @Select(PersonsState.getPersons)
   persons$: Observable<Person>;
 
   @Select(PersonsState.isAddingMode)
