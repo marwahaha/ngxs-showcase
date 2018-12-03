@@ -2,7 +2,8 @@ import {async, TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './persons.state';
 import {Person} from '../../models/person.model';
-import {InitPersonsState, ModifyPerson} from '../actions/persons-state.actions';
+import {InitPersonsState, ModifyPerson, NewPerson} from '../actions/persons-state.actions';
+import {PersonsStateModel} from '../models/persons-state.model';
 
 describe('Persons State', () => {
   let store: Store;
@@ -37,9 +38,10 @@ describe('Persons State', () => {
   describe('Selector \'PersonState.persons\'', () => {
     it('should return all the persons in the state', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
-      store.selectOnce(state => {
+      store.selectOnce((state: PersonsStateModel) => {
         expect(PersonsState.persons(state)).toEqual(expectedPersons);
         expect(PersonsState.isLoaded(state)).toEqual(true);
+        expect(state.maxId).toEqual(2);
       });
     }));
   });
@@ -58,7 +60,25 @@ describe('Persons State', () => {
         }
       );
     }));
+  });
 
+  describe('NewPerson action', () => {
+
+    const newPerson: Person = {name: 'premier', forename: 'forename'};
+
+    it('should add the person to the pre existing one', () => {
+      store.dispatch(new InitPersonsState(expectedPersons));
+      store.dispatch(new NewPerson(newPerson));
+      store.selectOnce(PersonsState.persons).subscribe(
+        persons => {
+          const lastPerson: Person = persons[persons.length - 1];
+          expect(lastPerson.forename).toEqual(newPerson.forename);
+          expect(lastPerson.name).toEqual(newPerson.name);
+          expect(lastPerson.id).toBeTruthy();
+          expect(persons).toHaveLength(3);
+        }
+      );
+    });
   });
 });
 

@@ -1,15 +1,15 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {PersonsStateModel} from '../models/persons-state.model';
-import {InitPersonsState, ModifyPerson} from '../actions/persons-state.actions';
+import {InitPersonsState, ModifyPerson, NewPerson} from '../actions/persons-state.actions';
 import {Person} from '../../models/person.model';
-import {Observable} from 'rxjs';
 
 
 @State<PersonsStateModel>({
   name: 'persons',
   defaults: {
     persons: [],
-    loaded: false
+    loaded: false,
+    maxId: 0
   }
 })
 export class PersonsState {
@@ -37,7 +37,8 @@ export class PersonsState {
     console.log('Received InitState action');
     ctx.setState({
       persons: action.persons,
-      loaded: true
+      loaded: true,
+      maxId: Math.max.apply(Math, action.persons.map((o) => o.id))
     });
     console.log(`The state is now : ${JSON.stringify(ctx.getState())}`);
   }
@@ -54,6 +55,16 @@ export class PersonsState {
     updatedPersons[index] = action.person;
     ctx.patchState({persons: updatedPersons});
     console.log(ctx.getState().persons);
+  }
+
+  @Action(NewPerson)
+  newPerson(ctx: StateContext<PersonsStateModel>, action: NewPerson) {
+    console.log(`Received this new person ${JSON.stringify(action.person)}`);
+    const newPerson = action.person;
+    newPerson.id = ctx.getState().maxId + 1;
+    const tmpPersons = ctx.getState().persons;
+    tmpPersons.push(newPerson);
+    ctx.patchState({persons: tmpPersons, maxId: newPerson.id})
   }
 
 }
