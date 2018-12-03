@@ -8,6 +8,7 @@
 
 .side-menu {
   padding: 1em;
+  min-width: 9em;
 }
 
 .banner {

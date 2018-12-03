@@ -14,15 +14,15 @@
       a lenght between 2 to 10.
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="person-form-item">
-    <mat-label>Birth Date</mat-label>
-    <input matInput [matDatepicker]="myDatepicker" formControlName="birthDate" placeholder="Choose a date"/>
-    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker></mat-datepicker>
-    <mat-error *ngIf="!personForm.get('birthDate').valid && personForm.get('birthDate').touched">The date should be in
-      the past.
-    </mat-error>
-  </mat-form-field>
+  <!--<mat-form-field class="person-form-item">-->
+  <!--<mat-label>Birth Date</mat-label>-->
+  <!--<input matInput [matDatepicker]="myDatepicker" formControlName="birthDate" placeholder="Choose a date"/>-->
+  <!--<mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>-->
+  <!--<mat-datepicker #myDatepicker></mat-datepicker>-->
+  <!--<mat-error *ngIf="!personForm.get('birthDate').valid && personForm.get('birthDate').touched">The date should be in-->
+  <!--the past.-->
+  <!--</mat-error>-->
+  <!--</mat-form-field>-->
   <div>
     <button name="cancelButton" type="button" mat-raised-button color="basic" (click)="onCancel()">Cancel</button>
     <button mat-raised-button type="button" color="primary" [disabled]="!personForm.valid || !personForm.touched"

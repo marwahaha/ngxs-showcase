@@ -1,8 +1,8 @@
 import {async, fakeAsync, TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './persons.state';
-import {Person} from '../../models/person.model';
-import {InitPersonsState, ModifyPerson, NewPerson, SelectPerson} from '../actions/persons-state.actions';
+import {Person} from '../../../../models/person.model';
+import {AddPerson, InitPersonsState, ModifyPerson, SelectPerson} from '../actions/persons-state.actions';
 import {PersonsStateModel} from '../models/persons-state.model';
 
 describe('Persons State', () => {
@@ -62,13 +62,13 @@ describe('Persons State', () => {
     }));
   });
 
-  describe('NewPerson action', () => {
+  describe('AddPerson action', () => {
 
     const newPerson: Person = {name: 'premier', forename: 'forename'};
 
     it('should add the person to the pre existing one', () => {
       store.dispatch(new InitPersonsState(expectedPersons));
-      store.dispatch(new NewPerson(newPerson));
+      store.dispatch(new AddPerson(newPerson));
       store.selectOnce((state: PersonsStateModel) => {
         const lastPerson: Person = state.persons[state.persons.length - 1];
         expect(lastPerson.forename).toEqual(newPerson.forename);

@@ -7,14 +7,14 @@ import {MaterialModule} from '@shared';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonService} from '../services/person.service';
-import {Person} from '../models/person.model';
+import {Person} from '../../../models/person.model';
 import {RouterTestingModule} from '@angular/router/testing';
 import {By} from '@angular/platform-browser';
 import {of} from 'rxjs/observable/of';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PersonEditState} from '../store/states/person-edit.state';
 import {PersonsState} from '../store/states/persons.state';
-import {NewPerson} from '../store/actions/persons-state.actions';
+import {AddPerson} from '../store/actions/persons-state.actions';
 
 describe('PersonEditComponent', () => {
 
@@ -216,10 +216,10 @@ describe('PersonEditComponent', () => {
       dispatchFunction.mockReset();
     });
 
-    it('should dispatch newPerson action', () => {
+    it('should dispatch addPerson action', () => {
       component.onAdd();
       expect(dispatchFunction.mock.calls.length).toEqual(1);
-      expect(dispatchFunction.mock.calls[0][0]).toBeInstanceOf(NewPerson);
+      expect(dispatchFunction.mock.calls[0][0]).toBeInstanceOf(AddPerson);
     });
 
     it('should navigate back to /persons', () => {

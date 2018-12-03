@@ -1,4 +1,4 @@
-import {Person} from '../../models/person.model';
+import {Person} from '../../../../models/person.model';
 
 export class InitPersonsState {
   static readonly type = '[Person Service] Init Main State';
@@ -15,7 +15,8 @@ export class ModifyPerson {
   }
 }
 
-export class NewPerson {
+//TODO rename to AddPerson
+export class AddPerson {
   static readonly type = '[Person Edit Form] New Person';
 
   constructor(public person: Person) {
@@ -23,10 +24,10 @@ export class NewPerson {
   }
 }
 
-export class SelectPerson {
-  static readonly type = '[Persons Component] SelectPerson';
+export class OpenAddingMode {
+  static readonly type = '[Persons] Open Adding Mode';
+}
 
-  constructor(public person: Person) {
-
-  }
+export class EditionCanceled {
+  static readonly type = '[Edit Person Form] Person Modification Canceled';
 }

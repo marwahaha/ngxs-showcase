@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PersonsComponent} from './persons.component';
-import {Person} from './models/person.model';
+import {Person} from '../../models/person.model';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './store/states/persons.state';
