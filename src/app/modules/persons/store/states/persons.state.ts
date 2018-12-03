@@ -1,6 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {PersonsStateModel} from '../models/persons-state.model';
-import {InitPersonsState, ModifyPerson, NewPerson} from '../actions/persons-state.actions';
+import {InitPersonsState, ModifyPerson, NewPerson, SelectPerson} from '../actions/persons-state.actions';
 import {Person} from '../../models/person.model';
 
 
@@ -13,6 +13,11 @@ import {Person} from '../../models/person.model';
   }
 })
 export class PersonsState {
+
+  @Selector()
+  static selectedPerson(state: PersonsStateModel): Person {
+    return state.selectedPerson;
+  }
 
   @Selector()
   static persons(state: PersonsStateModel): Person[] {
@@ -65,6 +70,15 @@ export class PersonsState {
     const tmpPersons = ctx.getState().persons;
     tmpPersons.push(newPerson);
     ctx.patchState({persons: tmpPersons, maxId: newPerson.id})
+  }
+
+  @Action(SelectPerson)
+  selectPerson(ctx: StateContext<PersonsStateModel>, action: SelectPerson) {
+    if (ctx.getState().persons.find((person) => person.id === action.person.id)) {
+      ctx.patchState({selectedPerson: action.person});
+    } else {
+      throw new Error(`The person with ID :${action.person.id} is not loaded ! `);
+    }
   }
 
 }

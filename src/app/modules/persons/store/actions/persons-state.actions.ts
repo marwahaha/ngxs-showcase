@@ -16,7 +16,15 @@ export class ModifyPerson {
 }
 
 export class NewPerson {
-  static readonly type = '[Person Edit Form] New Person'
+  static readonly type = '[Person Edit Form] New Person';
+
+  constructor(public person: Person) {
+
+  }
+}
+
+export class SelectPerson {
+  static readonly type = '[Persons Component] SelectPerson';
 
   constructor(public person: Person) {
 

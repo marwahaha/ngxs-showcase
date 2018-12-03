@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {SideMenuComponent} from './side-menu/side-menu.component';
 import {MatSidenavModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {BannerComponent} from './banner/banner.component';
 
 @NgModule({
   imports: [
@@ -11,10 +12,12 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ],
   exports: [
-    SideMenuComponent
+    SideMenuComponent,
+    BannerComponent
   ],
   declarations: [
-    SideMenuComponent
+    SideMenuComponent,
+    BannerComponent
   ]
 })
 export class CoreModule {
