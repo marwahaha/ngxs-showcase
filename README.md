@@ -310,5 +310,5 @@ import {MaterialModule, NgxsFormPluginModule} from '@shared'
 - [ ] addresses
 - [ ] for addresses do a form of forms with inline edit mapped on one only state
 - [ ] Improve barrels and aliases
-- [ ] Use [ngxs devtools](https://github.com/ngxs/devtools) or Redux devtools 
+- [ ] Use [ngxs devtools](https://github.com/ngxs/devtools) or [Redux devtools](https://github.com/zalmoxisus/redux-devtools-extension) 
 
