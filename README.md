@@ -306,8 +306,8 @@ import {MaterialModule, NgxsFormPluginModule} from '@shared'
 
 # TODOs
 - [ ] Refactor tests
--[x] do a Banner that show the person currently in edition
--[ ] addresses
--[ ] for addresses do a form of forms with inline edit mapped on one only state
--[ ] Improve barrels and aliases
+- [x] do a Banner that show the person currently in edition
+- [ ] addresses
+- [ ] for addresses do a form of forms with inline edit mapped on one only state
+- [ ] Improve barrels and aliases
 
