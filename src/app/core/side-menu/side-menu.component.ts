@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppState} from '../../shared/store/states/app.state';
+import {AppState} from '../store/states/app.state';
 import {Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {Person} from '../../models/person.model';

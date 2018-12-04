@@ -7,7 +7,7 @@ import {CoreModule} from '@core';
 import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {AppState} from './shared/store/states/app.state';
+import {AppState} from './core/store/states/app.state';
 
 const appRoutes: Routes = [
   {

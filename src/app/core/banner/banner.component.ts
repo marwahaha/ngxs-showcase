@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Person} from '../../models/person.model';
 import {Observable} from 'rxjs';
-import {AppState} from '../../shared/store/states/app.state';
+import {AppState} from '../store/states/app.state';
 import {Select} from '@ngxs/store';
 
 @Component({

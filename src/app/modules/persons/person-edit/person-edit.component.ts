@@ -11,7 +11,7 @@ import {Person} from '../../../models/person.model';
 import {UpdateForm, UpdateFormValue} from '@shared';
 import {Observable, Subscription} from 'rxjs';
 import {FormAdded, FormSaved} from '../store/actions/person-edit-state.actions';
-import {PersonSelected} from '../../../shared/store/actions/app-state.actions';
+import {PersonSelected} from '../../../core/store/actions/app-state.actions';
 
 @Component({
   selector: 'person-edit',

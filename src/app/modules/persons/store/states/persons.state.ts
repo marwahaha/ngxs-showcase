@@ -8,7 +8,7 @@ import {
   OpenAddingMode
 } from '../actions/persons-state.actions';
 import {Person} from '../../../../models/person.model';
-import {PersonUnselected} from '../../../../shared/store/actions/app-state.actions';
+import {PersonUnselected} from '../../../../core/store/actions/app-state.actions';
 
 
 @State<PersonsStateModel>({
