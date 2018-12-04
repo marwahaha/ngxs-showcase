@@ -300,7 +300,7 @@ Now you can import all the content of the shared folder with only _@shared_. Ex 
 import {MaterialModule, NgxsFormPluginModule} from '@shared'
 ```
 
-# States, Action and Selectors
+# States, Actions and Selectors
 
 ![alt states](./docs/States.png)
 
@@ -309,4 +309,5 @@ import {MaterialModule, NgxsFormPluginModule} from '@shared'
  -[x] do a Banner that show the person currently in edition
  -[ ] addresses
  -[ ] for addresses do a form of forms with inline edit mapped on one only state
+ -[ ] Improve barrels and aliases
 

@@ -11,16 +11,13 @@ export class ModifyPerson {
   static readonly type = '[Person Edit Form] Modifiy Person';
 
   constructor(public person: Person) {
-
   }
 }
 
-//TODO rename to AddPerson
 export class AddPerson {
   static readonly type = '[Person Edit Form] New Person';
 
   constructor(public person: Person) {
-
   }
 }
 
