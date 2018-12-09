@@ -253,6 +253,10 @@ export class PersonsModule {
 }
 ```
 
+### DevTools
+
+See https://ngxs.gitbook.io/ngxs/plugins/devtools to see how to install devtools.
+
 ## Barrels & Paths
 
 ### Barrel
@@ -310,5 +314,5 @@ import {MaterialModule, NgxsFormPluginModule} from '@shared'
 - [ ] addresses
 - [ ] for addresses do a form of forms with inline edit mapped on one only state
 - [ ] Improve barrels and aliases
-- [ ] Use [ngxs devtools](https://github.com/ngxs/devtools) or [Redux devtools](https://github.com/zalmoxisus/redux-devtools-extension) 
+- [x] Use [ngxs devtools](https://github.com/ngxs/devtools) or [Redux devtools](https://github.com/zalmoxisus/redux-devtools-extension) 
 

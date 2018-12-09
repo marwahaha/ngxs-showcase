@@ -8,6 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AppState} from './core/store/states/app.state';
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 
 const appRoutes: Routes = [
   {
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgxsModule.forRoot([AppState]),
     NgxsFormPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
