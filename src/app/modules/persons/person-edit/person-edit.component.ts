@@ -49,7 +49,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
     // Read the id from the URL and find the corresponding person in the store
     this.modeSubscription = this.addingMode$.subscribe(
       mode => {
-        if (mode) {
+        if (mode === true) {
           this.editMode = false;
           // force the form to empty
           this.store.dispatch(new UpdateForm({
@@ -108,7 +108,9 @@ export class PersonEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.modeSubscription.unsubscribe();
+    if (this.modeSubscription) {
+      this.modeSubscription.unsubscribe();
+    }
     if (this.personStateSubscription) {
       this.personStateSubscription.unsubscribe();
     }

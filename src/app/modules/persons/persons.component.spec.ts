@@ -9,6 +9,8 @@ import {PersonService} from './services/person.service';
 import {InitPersonsState} from './store/actions/persons-state.actions';
 import {MaterialModule} from '@shared';
 import {Router} from '@angular/router';
+import {PersonEditComponent} from './person-edit/person-edit.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('PersonsComponent', () => {
   let component: PersonsComponent;
@@ -19,10 +21,11 @@ describe('PersonsComponent', () => {
   const navigateFunction = jest.fn();
 
   setupTestBed({
-    declarations: [PersonsComponent],
+    declarations: [PersonsComponent, PersonEditComponent],
     imports: [
       MaterialModule,
       RouterTestingModule,
+      ReactiveFormsModule,
       NgxsModule.forRoot([PersonsState])
     ],
     providers: [
@@ -77,10 +80,14 @@ describe('PersonsComponent', () => {
   });
 
   describe('onAdd', () => {
+
+    beforeEach(() => {
+      jest.spyOn(store, 'dispatch');
+    });
+
     it('should navigate to person edition component in addition mode', () => {
       component.onAdd();
-      expect(navigateFunction.mock.calls.length).toEqual(1);
-      expect(navigateFunction.mock.calls[0][0]).toEqual(['/persons', 'add']);
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
     });
   });
 
