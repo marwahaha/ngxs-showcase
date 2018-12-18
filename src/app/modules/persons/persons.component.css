@@ -1,0 +1,18 @@
+.person-item {
+  height: 100% !important;
+}
+
+.person-list {
+  display: flex;
+  padding-top: 0;
+}
+
+.person-tile {
+  margin: 1em;
+  min-width: 80px;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}

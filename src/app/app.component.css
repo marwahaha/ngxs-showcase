@@ -1,0 +1,19 @@
+.side-container {
+  background-color: #ffffff;
+}
+
+.side-content {
+  background-color: #f9f9f9;
+}
+
+.side-menu {
+  padding: 1em;
+  min-width: 9em;
+}
+
+.banner {
+  min-height: 5em;
+  background-color: #ffffff;
+  margin: 0 auto;
+  box-shadow: inset 0px -15px 10px -15px #111;
+}
