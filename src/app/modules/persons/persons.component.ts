@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Person} from '../../models/person.model';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Select, Store} from '@ngxs/store';
 import {PersonsState} from './store/states/persons.state';
 import {PersonService} from './services/person.service';

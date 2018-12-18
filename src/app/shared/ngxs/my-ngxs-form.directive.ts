@@ -2,8 +2,8 @@ import {ChangeDetectorRef, Directive, Input, OnDestroy, OnInit} from '@angular/c
 import {getValue, Store} from '@ngxs/store';
 import {FormGroupDirective} from '@angular/forms';
 import {debounceTime, first, takeUntil} from 'rxjs/operators';
-import {UpdateForm, UpdateFormDirty, UpdateFormErrors, UpdateFormStatus, UpdateFormValue} from './actions';
-import {Subject} from 'rxjs/Subject';
+import {UpdateForm, UpdateFormDirty, UpdateFormErrors, UpdateFormStatus, UpdateFormValue} from '@shared';
+import {Subject} from 'rxjs';
 
 /**
  * Imported from https://github.com/ngxs/store/blob/v3.2.0/packages/form-plugin/src/directive.ts

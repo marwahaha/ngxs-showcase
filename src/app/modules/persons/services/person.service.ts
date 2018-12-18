@@ -1,6 +1,6 @@
+import {Observable, of as observableOf} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+
 import {Person} from '../../../models/person.model';
 import {InitPersonsState} from '../store/actions/persons-state.actions';
 import {Store} from '@ngxs/store';
@@ -13,7 +13,7 @@ export class PersonService {
   }
 
   getPersons$(): Observable<Person> {
-    return Observable.of({id: 1, name: 'Martin', forename: 'Robert C.'}, {id: 2, name: 'Brown', forename: 'Simon'});
+    return observableOf({id: 1, name: 'Martin', forename: 'Robert C.'}, {id: 2, name: 'Brown', forename: 'Simon'});
   }
 
   loadPersons(): void {

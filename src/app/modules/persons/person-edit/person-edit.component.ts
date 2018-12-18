@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Select, Store} from '@ngxs/store';
-import 'rxjs/add/observable/from';
+
 import {PersonService} from '../services/person.service';
 import {EditionCanceled} from '../store/actions/persons-state.actions';
 import {PersonsState} from '../store/states/persons.state';
