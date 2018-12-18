@@ -2,7 +2,7 @@ import {PersonEditComponent} from './person-edit.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {PersonsComponent} from '../persons.component';
-import {MaterialModule, NgxsFormPluginModule, UpdateFormValue} from '@shared';
+import {MaterialModule} from '@shared';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonService} from '../services/person.service';
@@ -11,11 +11,12 @@ import {By} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PersonEditState} from '../store/states/person-edit.state';
 import {PersonsState} from '../store/states/persons.state';
-import {of} from 'rxjs/observable/of';
 import {PersonSelected} from '../../../core/store/actions/app-state.actions';
 import {FormAdded} from '../store/actions/person-edit-state.actions';
 import {personRoutes} from '../persons.module';
 import {Location} from '@angular/common';
+import {NgxsFormPluginModule, UpdateFormValue} from '@ngxs/form-plugin';
+import {of} from 'rxjs';
 
 describe('PersonEditComponent', () => {
   describe('IT', () => {
@@ -160,6 +161,7 @@ describe('PersonEditComponent', () => {
           navigate: navigateFunction
         };
 
+        // @ts-ignore
         component = new PersonEditComponent(activeRoute, store, service, router);
         dispatchFunction.mockReset();
         selectFunction.mockReset();

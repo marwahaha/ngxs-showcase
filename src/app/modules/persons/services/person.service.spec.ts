@@ -2,7 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 
 import {PersonService} from './person.service';
 import {Store} from '@ngxs/store';
-import {of} from 'rxjs/observable/of';
+import {of} from 'rxjs';
 
 describe('PersonService', () => {
 

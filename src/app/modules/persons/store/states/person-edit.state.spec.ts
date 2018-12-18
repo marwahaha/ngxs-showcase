@@ -1,12 +1,11 @@
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonEditState} from './person-edit.state';
 import {async, TestBed} from '@angular/core/testing';
-import {UpdateFormValue} from '../../../../shared/ngxs/actions';
-import {NgxsFormPluginModule} from '../../../../shared/ngxs/form.module';
+import {NgxsFormPluginModule, UpdateFormValue} from '@ngxs/form-plugin';
 
 describe('PersonEditState', () => {
 
-  const store: Store;
+  let store: Store;
 
   setupTestBed(
     {

@@ -1,8 +1,8 @@
-import {async, fakeAsync, TestBed} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {NgxsModule, Store} from '@ngxs/store';
 import {PersonsState} from './persons.state';
 import {Person} from '../../../../models/person.model';
-import {AddPerson, InitPersonsState, ModifyPerson, SelectPerson} from '../actions/persons-state.actions';
+import {AddPerson, InitPersonsState, ModifyPerson} from '../actions/persons-state.actions';
 import {PersonsStateModel} from '../models/persons-state.model';
 
 describe('Persons State', () => {
@@ -79,48 +79,6 @@ describe('Persons State', () => {
     });
   });
 
-  describe('SelectPerson action', () => {
-
-    it('should set selectedPerson field in state', () => {
-      store.dispatch(new InitPersonsState(expectedPersons));
-      store.selectOnce((state: PersonsStateModel) => {
-        expect(state.selectedPerson).toBeFalsy();
-      });
-      store.dispatch(new SelectPerson(personOne));
-      store.selectOnce((state: PersonsStateModel) => {
-        expect(state.selectedPerson).toEqual(personOne);
-      });
-    });
-
-    it('should throw an exception if the person doesnt exist', () => {
-      store.dispatch(new InitPersonsState(expectedPersons));
-      try {
-        store.dispatch(new SelectPerson({id: 999, name: 'name', forename: 'forename'}));
-      } catch (e) {
-        expect(e).toBeTruthy();
-      }
-      store.selectOnce((state: PersonsStateModel) => {
-        expect(state.selectedPerson).toEqual(personOne);
-      });
-    });
-
-  });
-
-  describe('selectedPerson', () => {
-
-    xit('should return nothing when no one is selected', fakeAsync(() => {
-      store.selectOnce(PersonsState.selectedPerson);
-      // TODO try to do the test
-    }));
-
-    it('should return the selected person', () => {
-      store.dispatch(new InitPersonsState(expectedPersons));
-      store.dispatch(new SelectPerson(personOne));
-      store.selectOnce(PersonsState.selectedPerson).subscribe(
-        person => expect(person).toBe(personOne)
-      );
-    });
-  });
 });
 
 
