@@ -2,13 +2,14 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {MaterialModule, NgxsFormPluginModule} from '@shared';
+import {MaterialModule} from '@shared';
 import {CoreModule} from '@core';
 import {RouterModule, Routes} from '@angular/router';
 import {NgxsModule} from '@ngxs/store';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AppState} from './core/store/states/app.state';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {NgxsFormPluginModule} from '@ngxs/form-plugin';
 
 const appRoutes: Routes = [
   {

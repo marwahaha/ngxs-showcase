@@ -259,6 +259,13 @@
   dependencies:
     tslib "^1.9.0"
 
+"@ngxs/form-plugin@3.3.3":
+  version "3.3.3"
+  resolved "https://nexus.mobicorp.ch:8443/nexus/repository/npm-mobi/@ngxs/form-plugin/-/form-plugin-3.3.3.tgz#42a01f980dc48d695c3071fc3e7085ba3014e4f5"
+  integrity sha512-BkPqFl3aVKASrW1pmGfj9VpUfiZP/OC2nyILJkbq7tnKnJNga+aS5mvQLB5tcNCHdOBLfnBNhCfEgAlhi9/Iwg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngxs/store@^3.3.3":
   version "3.3.3"
   resolved "https://nexus.mobicorp.ch:8443/nexus/repository/npm-mobi/@ngxs/store/-/store-3.3.3.tgz#2fc269819a5ec007b105994ae6b5b876c93a715f"
