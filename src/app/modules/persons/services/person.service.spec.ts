@@ -6,7 +6,7 @@ import {of} from 'rxjs';
 
 describe('PersonService', () => {
 
-  const service: PersonService;
+  let service: PersonService;
 
   const selectFunction = jest.fn();
   const dispatchFunction = jest.fn();
@@ -49,7 +49,7 @@ describe('PersonService', () => {
 
   describe('loadPersons', () => {
 
-    const store: Store;
+    let store;
 
     beforeEach(() => {
         store = jest.spyOn(TestBed.get(Store), 'dispatch');

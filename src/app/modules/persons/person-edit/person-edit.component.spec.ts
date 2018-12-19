@@ -252,7 +252,7 @@ describe('PersonEditComponent', () => {
 
         it('should be invalid if all the fields are empty', () => {
           component.personForm.patchValue({id: null, name: '', forename: '', birthDate: null});
-          expect(component.personForm.getRawValue()).toEqual({id: null, name: '', forename: ''})
+          expect(component.personForm.getRawValue()).toEqual({id: null, name: '', forename: ''});
           expect(component.personForm.valid).toBe(false);
         });
 
@@ -265,6 +265,4 @@ describe('PersonEditComponent', () => {
       });
     }
   );
-})
-;
-
+});

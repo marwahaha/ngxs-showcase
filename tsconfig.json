@@ -10,6 +10,9 @@
     "experimentalDecorators": true,
     "target": "es5",
     "baseUrl": "src",
+    "types": [
+      "jest"
+    ],
     "paths": {
       "@shared": [
         "app/shared/index"
