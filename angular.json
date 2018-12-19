@@ -65,7 +65,8 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.ts"
+            "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.ts",
+            "coverage": true
           }
         },
         "lint": {
