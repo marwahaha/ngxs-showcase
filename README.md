@@ -2,7 +2,7 @@
 
 This project demonstrate certain use of [NGXS](https://ngxs.gitbook.io/ngxs).
 
-See the branch [ngxs2](https://github.com/McKratt/ngxs-showcase/tree/ngxs2) to see the showcase with Angular 5 and the version 2 of NGXS.
+(ABANDONNED) See the branch [ngxs2](https://github.com/McKratt/ngxs-showcase/tree/ngxs2) to see the showcase with Angular 5 and the version 2 of NGXS.
 See the branch [ngxs3](https://github.com/McKratt/ngxs-showcase/tree/ngxs3) to see the showcase with Angular 6 and the version 3 of NGXS.
 
 # Use Case #
@@ -76,55 +76,11 @@ yarn add -D jest jest-preset-angular
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts"
   }
 ```
-**setupJest.ts**
+**jest.setup.ts**
 ```typescript
 import 'jest-preset-angular';
-import './jestGlobalMocks'; // browser mocks globally available for every test
-```
-
-**jestGlobalMocks**
-```typescript
-global['CSS'] = null;
-
-const mock = () => {
-  let storage = {};
-  return {
-    getItem: key => key in storage ? storage[key] : null,
-    setItem: (key, value) => storage[key] = value || '',
-    removeItem: key => delete storage[key],
-    clear: () => storage = {},
-  };
-};
-
-Object.defineProperty(window, 'localStorage', {value: mock()});
-Object.defineProperty(window, 'sessionStorage', {value: mock()});
-Object.defineProperty(document, 'doctype', {
-  value: '<!DOCTYPE html>'
-});
-Object.defineProperty(window, 'getComputedStyle', {
-  value: () => {
-    return {
-      display: 'none',
-      appearance: ['-webkit-appearance']
-    };
-  }
-});
-/**
- * ISSUE: https://github.com/angular/material2/issues/7101
- * Workaround for JSDOM missing transform property
- */
-Object.defineProperty(document.body.style, 'transform', {
-  value: () => {
-    return {
-      enumerable: true,
-      configurable: true,
-    };
-  },
-});
-```
-**typings.d.ts**
-```typescript
-declare var global: any;
+import '@angular-builders/jest/src/jest-config/global-mocks'
+import 'src/jest/setupTestBed';
 ```
 
 ### TestBed Optimization
@@ -134,7 +90,7 @@ declare var global: any;
 import './setupTestBed';
 ```
 
-**setupTestBed.ts**
+**src/jest/setupTestBed.ts**
 ```typescript
 import {TestBed, async, TestModuleMetadata} from '@angular/core/testing';
 

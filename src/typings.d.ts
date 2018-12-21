@@ -5,8 +5,6 @@ interface NodeModule {
   id: string;
 }
 
-declare var global: any;
-
 declare namespace NodeJS {
   export interface Global {
     setupTestBed: any;
