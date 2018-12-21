@@ -58,29 +58,42 @@ Consider a person which can contain many addresses :
 
 ## JEST
 
-[jest-preset-angular](https://github.com/thymikee/jest-preset-angular)
+We use Jest via Angular Builder : https://codeburst.io/angular-6-ng-test-with-jest-in-3-minutes-b1fe5ed3417c
 
 ### Install
 
 ```
-yarn add -D jest jest-preset-angular
+yarn add -D jest @angular-builders/jest
 ```
 
 ### Basic Configuration
 
-**package.json**
+**angular.json**
 ```json
-,
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts"
-  }
+ "projects": {
+    "ngsx-showcase": {
+...
+      "architect": {
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.ts",
+            "coverage": true
+          }
+        },
+        ...
+  },
 ```
-**jest.setup.ts**
-```typescript
-import 'jest-preset-angular';
-import '@angular-builders/jest/src/jest-config/global-mocks'
-import 'src/jest/setupTestBed';
+
+**src/jest.conf.js**
+```javascript
+module.exports = {
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png)$': `${__dirname}/mock-module.js`,
+    '@shared': '<rootDir>/src/app/shared/index',
+    '@core': '<rootDir>/src/app/core/index'
+  }
+};
 ```
 
 **src/tsconfig.app.json**
@@ -95,9 +108,11 @@ Ignore jest config files.
 
 ### TestBed Optimization
 
-**steupJest.ts**
+**jest.setup.ts**
 ```typescript
-import './setupTestBed';
+import 'jest-preset-angular';
+import '@angular-builders/jest/src/jest-config/global-mocks'
+import 'src/jest/setupTestBed';
 ```
 
 **src/jest/setupTestBed.ts**
