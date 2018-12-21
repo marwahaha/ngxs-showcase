@@ -5,3 +5,4 @@ module.exports = {
     '@core': '<rootDir>/src/app/core/index'
   }
 };
+
