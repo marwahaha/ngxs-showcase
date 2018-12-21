@@ -83,6 +83,16 @@ import '@angular-builders/jest/src/jest-config/global-mocks'
 import 'src/jest/setupTestBed';
 ```
 
+**src/tsconfig.app.json**
+Ignore jest config files.
+```json
+  "exclude": [
+    "test.ts",
+    "**/jest/**",
+    "**/*.spec.ts"
+  ]
+```
+
 ### TestBed Optimization
 
 **steupJest.ts**
