@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 import {OpenAddingMode} from './store/actions/persons-state.actions';
 
 @Component({
-  selector: 'persons',
+  selector: 'app-persons',
   templateUrl: './persons.component.html',
   styleUrls: ['./persons.component.css']
 })
@@ -20,7 +20,7 @@ export class PersonsComponent implements OnInit {
   @Select(PersonsState.isAddingMode)
   addingMode$: Observable<boolean>;
 
-  add: boolean = false;
+  add = false;
 
   constructor(private service: PersonService, private router: Router, private store: Store) {
   }
@@ -29,7 +29,7 @@ export class PersonsComponent implements OnInit {
     this.service.loadPersons();
     this.addingMode$.subscribe(
       mode => this.add = mode
-    )
+    );
   }
 
   onAdd(): void {
@@ -37,7 +37,7 @@ export class PersonsComponent implements OnInit {
   }
 
   onSelect(person: Person) {
-    this.router.navigate(['/persons', person.id])
+    this.router.navigate(['/persons', person.id]);
   }
 
 }

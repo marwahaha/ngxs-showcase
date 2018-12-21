@@ -3,5 +3,5 @@ export class FormAdded {
 }
 
 export class FormSaved {
-  static readonly type = '[Person Edit Form] Form Saved'
+  static readonly type = '[Person Edit Form] Form Saved';
 }

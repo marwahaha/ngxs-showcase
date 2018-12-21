@@ -70,7 +70,7 @@ describe('PersonEditComponent', () => {
     });
 
     describe('ngOnInit', () => {
-      //TODO
+      // TODO
       it('should load the person in the PersonsState', async(() => {
         assertWhenStable(() => store.selectOnce(PersonsState.getPersons).subscribe(
           (model) => expect(model).toHaveLength(2)
@@ -179,7 +179,7 @@ describe('PersonEditComponent', () => {
               id: 1,
               name: 'Martins',
               forename: 'Robert'
-            }
+            };
           }));
         });
 
@@ -245,7 +245,7 @@ describe('PersonEditComponent', () => {
               id: 1,
               name: 'Martins',
               forename: 'Robert'
-            }
+            };
           }));
           component.ngOnInit();
         });

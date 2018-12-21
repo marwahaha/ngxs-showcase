@@ -25,7 +25,7 @@ export class PersonEditComponent implements OnInit, OnDestroy {
 
   personForm: FormGroup;
 
-  editMode: boolean = true;
+  editMode = true;
 
   // Observable Subscriptions
   private modeSubscription: Subscription;
@@ -60,11 +60,11 @@ export class PersonEditComponent implements OnInit, OnDestroy {
             errors: null
           }));
         } else {
-          let idParam = this.activeRoute.snapshot.params['id'];
+          const idParam = this.activeRoute.snapshot.params['id'];
           if (idParam) {
             this.personStateSubscription = this.store.select(PersonsState.findPerson)
               .pipe(
-                map(filterFn => filterFn(parseInt(idParam))),
+                map(filterFn => filterFn(parseInt(idParam, 10))),
                 first()
               )
               .subscribe(
@@ -89,13 +89,13 @@ export class PersonEditComponent implements OnInit, OnDestroy {
 
   onSave() {
     this.store.dispatch(new FormSaved());
-    this.navigateBackToPersons()
+    this.navigateBackToPersons();
   }
 
   onCancel() {
     this.store.dispatch(new EditionCanceled());
     if (this.editMode) {
-      this.navigateBackToPersons()
+      this.navigateBackToPersons();
     }
   }
 

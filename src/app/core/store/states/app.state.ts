@@ -16,7 +16,7 @@ export class AppState {
 
   @Action(PersonSelected)
   setSelectedPerson(ctx: StateContext<AppStateModel>, action: PersonSelected) {
-    ctx.patchState({selectedPerson: action.person})
+    ctx.patchState({selectedPerson: action.person});
   }
 
   @Action(PersonUnselected)

@@ -42,6 +42,6 @@ export class PersonEditState {
       id: model.id,
       name: model.name,
       forename: model.forename
-    }
+    };
   }
 }

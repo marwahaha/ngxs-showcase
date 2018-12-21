@@ -5,7 +5,7 @@ import {AppState} from '../store/states/app.state';
 import {Select} from '@ngxs/store';
 
 @Component({
-  selector: 'banner',
+  selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css']
 })
@@ -21,7 +21,7 @@ export class BannerComponent implements OnInit {
   ngOnInit() {
     this.person$.subscribe(
       person => this.person = person
-    )
+    );
   }
 
 }

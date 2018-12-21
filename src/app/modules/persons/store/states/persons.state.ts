@@ -1,12 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {PersonsStateModel} from '../models/persons-state.model';
-import {
-  AddPerson,
-  EditionCanceled,
-  InitPersonsState,
-  ModifyPerson,
-  OpenAddingMode
-} from '../actions/persons-state.actions';
+import {AddPerson, EditionCanceled, InitPersonsState, ModifyPerson, OpenAddingMode} from '../actions/persons-state.actions';
 import {Person} from '../../../../models/person.model';
 import {PersonUnselected} from '../../../../core/store/actions/app-state.actions';
 
@@ -79,12 +73,12 @@ export class PersonsState {
     newPerson.id = ctx.getState().maxId + 1;
     const tmpPersons = ctx.getState().persons;
     tmpPersons.push(newPerson);
-    ctx.patchState({persons: tmpPersons, maxId: newPerson.id, addingMode: false})
+    ctx.patchState({persons: tmpPersons, maxId: newPerson.id, addingMode: false});
   }
 
   @Action(OpenAddingMode)
   openAddingMode(ctx: StateContext<PersonsStateModel>) {
-    ctx.patchState({addingMode: true})
+    ctx.patchState({addingMode: true});
   }
 
   @Action(EditionCanceled)
