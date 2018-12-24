@@ -10,7 +10,7 @@
       </mat-card-content>
     </mat-card>
   </mat-list-item>
-  <mat-list-item (click)="onAdd()" class="person-item">
+  <mat-list-item (click)="onAdd()" *ngIf="!add" class="person-item">
     <mat-card class="person-tile">
       <mat-card-content>
         <mat-icon>add</mat-icon>

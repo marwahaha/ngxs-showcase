@@ -1,0 +1,13 @@
+.mat-toolbar-single-row {
+  height: 100%;
+}
+
+.mat-card {
+  padding: 5px;
+  min-height: 3em;
+  min-width: 3em;
+}
+
+p {
+  margin: 0;
+}

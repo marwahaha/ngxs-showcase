@@ -1,17 +1,32 @@
-.person-item {
-  height: 100% !important;
-}
-
 .person-list {
   display: flex;
-  padding-top: 0;
+  /*flex-wrap: wrap;*/
+  margin-bottom: 20px;
+}
+
+.mat-list-base .mat-list-item {
+  height: auto;
+}
+
+.mat-card {
+  padding: 5px;
+}
+
+.person-item {
+  flex-grow: 1;
+  display: flex;
 }
 
 .person-tile {
-  margin: 1em;
-  min-width: 80px;
-  display: block;
+  flex-grow: 1;
+  padding-left: 10px;
 }
+
+div .mat-card-header-text {
+  margin: 0 0 0 0;
+}
+
+
 
 a {
   text-decoration: none;

@@ -4,3 +4,11 @@
 body {
   margin: 0;
 }
+
+mat-card-content {
+  text-align: center;
+}
+
+mat-card-header {
+  justify-content: center;
+}

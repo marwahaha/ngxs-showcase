@@ -1,19 +1,19 @@
-.side-container {
-  background-color: #ffffff;
+.app-sidebar {
+  grid-area: sidebar;
+  background-color: #f5f5f5;
 }
 
-.side-content {
-  background-color: #f9f9f9;
+.app-content {
+  grid-area: content;
 }
 
-.side-menu {
-  padding: 1em;
-  min-width: 9em;
+.app-banner {
+  grid-area: banner;
 }
 
-.banner {
-  min-height: 5em;
-  background-color: #ffffff;
-  margin: 0 auto;
-  box-shadow: inset 0px -15px 10px -15px #111;
+.app-container {
+  display: grid;
+  grid-template-columns: 9em 1fr;
+  grid-template-rows: 5em 1fr;
+  grid-template-areas: "banner banner" "sidebar content";
 }
