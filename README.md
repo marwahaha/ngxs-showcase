@@ -56,6 +56,18 @@ Consider a person which can contain many addresses :
 
 # NGXS 3 Implementation details
 
+## Material Icons Offline
+
+* Get the _iconfont_ folder from [Github](https://github.com/google/material-design-icons/tree/master/iconfont)
+* Copy the content to *src/assets/fontd/material-icons*
+* Add the css file in the styles object in the **angular.json** file :
+```json
+            "styles": [
+              "src/styles.css",
+              "src/assets/fonts/material-icons/material-icons.css"
+            ],
+```
+
 ## JEST
 
 We use Jest via Angular Builder : https://codeburst.io/angular-6-ng-test-with-jest-in-3-minutes-b1fe5ed3417c
