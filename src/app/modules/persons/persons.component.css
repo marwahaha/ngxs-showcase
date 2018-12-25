@@ -22,11 +22,9 @@
   padding-left: 10px;
 }
 
-div .mat-card-header-text {
-  margin: 0 0 0 0;
+::ng-deep .mat-card-header-text {
+  margin: 0px !important;
 }
-
-
 
 a {
   text-decoration: none;
