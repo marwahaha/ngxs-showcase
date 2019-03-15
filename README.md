@@ -1,18 +1,19 @@
-# NGXS Showcase #
+# NGXS Showcase
 
 This project demonstrate certain use of [NGXS](https://ngxs.gitbook.io/ngxs).
 
 (ABANDONNED) See the branch [ngxs2](https://github.com/McKratt/ngxs-showcase/tree/ngxs2) to see the showcase with Angular 5 and the version 2 of NGXS.
 See the branch [ngxs3](https://github.com/McKratt/ngxs-showcase/tree/ngxs3) to see the showcase with Angular 6 and the version 3 of NGXS.
 
-# Use Case #
+## Use Case
 
-## Model ##
+### Model
+
 Consider a person which can contain many addresses :
 
 ![alt model](./docs/model.png)
 
-## Screens ##
+### Screens
 
 * The index screen contain a button to add a new person and show all the already existing persons.
 
@@ -22,12 +23,12 @@ Consider a person which can contain many addresses :
 
 ![alt new](./docs/mockupGeneral.png)
 
-* Once the button **Add** pressed, a new banner appear with the general info of the person inside. 
-* We stay on the same screen but the url is now __persons/{id}__, where ID represent an internal automatically generated ID. 
+* Once the button **Add** pressed, a new banner appear with the general info of the person inside.
+* We stay on the same screen but the url is now __persons/{id}__, where ID represent an internal automatically generated ID.
 * The button is no more **Add** but **Save**.
 * In Case of modification, when the button **Save** is pushed the tile in the banner should be automatically updated.
 
-![alt created](./docs/mockupCreated.png) 
+![alt created](./docs/mockupCreated.png)
 
 * You can navigate to the addresses screen by clicking in the menu at left.
 * You navigate then to __persons/{id}/addresses__ and you show all the existing addresses.
@@ -41,7 +42,8 @@ Consider a person which can contain many addresses :
 * Once the button Add pressed we navigate back to __persons/{id}/addresses__.
 * The new address should be now visible in a tile.
 
-### Optional ###
+#### Optional
+
 * Same behaviour if we want to modify an Address
   * Tile with the info of the current address
   * Button **Add** changed for **Save**
@@ -54,9 +56,9 @@ Consider a person which can contain many addresses :
 - Conditions should, most of the time, determined with [NGXS selector](https://ngxs.gitbook.io/ngxs/concepts/select).
 - Angular Components don't communicate each other, they only interrogate the [store](https://ngxs.gitbook.io/ngxs/concepts/store).
 
-# NGXS 3 Implementation details
+## NGXS 3 Implementation details
 
-## Material Icons Offline
+### Material Icons Offline
 
 * Get the _iconfont_ folder from [Github](https://github.com/google/material-design-icons/tree/master/iconfont)
 * Copy the content to *src/assets/fontd/material-icons*
@@ -68,17 +70,17 @@ Consider a person which can contain many addresses :
             ],
 ```
 
-## JEST
+### JEST
 
 We use Jest via Angular Builder : https://codeburst.io/angular-6-ng-test-with-jest-in-3-minutes-b1fe5ed3417c
 
-### Install
+#### Install
 
-```
+```shell
 yarn add -D jest @angular-builders/jest
 ```
 
-### Basic Configuration
+#### Basic Configuration
 
 **angular.json**
 ```json
@@ -118,7 +120,7 @@ Ignore jest config files.
   ]
 ```
 
-### TestBed Optimization
+#### TestBed Optimization
 
 **jest.setup.ts**
 ```typescript
@@ -160,9 +162,9 @@ declare var beforeAll: any;
 declare var afterAll: any;
 ```
 
-## Angular Modules Lazy Loading
+### Angular Modules Lazy Loading
 
-### Routes
+#### Routes
 
 **AppModule** parent
 ```typescript
@@ -184,6 +186,7 @@ const appRoutes: Routes = [
 export class AppModule {
 }
 ```
+
 **PersonModule** Child
 
 ```typescript
@@ -215,7 +218,7 @@ export class PersonsModule {
 }
 ```
 
-### Store
+#### Store
 
 **AppModule** parent
 ```typescript
@@ -246,13 +249,14 @@ export class PersonsModule {
 }
 ```
 
-### DevTools
+#### DevTools
 
 See https://ngxs.gitbook.io/ngxs/plugins/devtools to see how to install devtools.
 
-## Barrels & Paths
+### Barrels & Paths
 
-### Barrel
+#### Barrel
+
 In _shared_ folder add **index.ts** file :
 ```typescript
 export {MaterialModule} from './material/material.module';
@@ -272,16 +276,20 @@ export {MyNgxsFormDirective} from './ngxs/my-ngxs-form.directive';
 export {NgxsFormPlugin} from './ngxs/form.plugin';
 
 ```
+
 **IMPORTANT** : Angular Module need named export don't use the * to export your objects.
 
-### Paths
+#### Paths
+
 In **tsconfig.json** add a path to the previous barrel :
+
 ```json
     "baseUrl": "src",
     "paths": {
       "@shared": ["app/shared/index"]
     },
 ```
+
 **IMPORTANT** : to use path you have to define baseUrl as well.
 
 In **package.json** add the path to _Jest_ so the tests know the paths too :
@@ -293,19 +301,20 @@ In **package.json** add the path to _Jest_ so the tests know the paths too :
 ```
 
 Now you can import all the content of the shared folder with only _@shared_. Ex :
+
 ```typescript
 import {MaterialModule, NgxsFormPluginModule} from '@shared'
 ```
 
-# States, Actions and Selectors
+## States, Actions and Selectors
 
 ![alt states](./docs/States.png)
 
-# TODOs
-- [ ] Refactor tests
-- [x] do a Banner that show the person currently in edition
-- [ ] addresses
-- [ ] for addresses do a form of forms with inline edit mapped on one only state
-- [ ] Improve barrels and aliases
-- [x] Use [ngxs devtools](https://github.com/ngxs/devtools) or [Redux devtools](https://github.com/zalmoxisus/redux-devtools-extension) 
+## TODOs
 
+* [ ] Refactor tests
+* [x] do a Banner that show the person currently in edition
+* [ ] addresses
+* [ ] for addresses do a form of forms with inline edit mapped on one only state
+* [ ] Improve barrels and aliases
+* [x] Use [ngxs devtools](https://github.com/ngxs/devtools) or [Redux devtools](https://github.com/zalmoxisus/redux-devtools-extension)
