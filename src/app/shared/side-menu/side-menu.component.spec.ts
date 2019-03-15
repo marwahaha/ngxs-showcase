@@ -1,8 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {SideMenuComponent} from './side-menu.component';
-import {NgxsModule} from '@ngxs/store';
-import {AppState} from '../store/states/app.state';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SideMenuComponent } from './side-menu.component';
+import { NgxsModule } from '@ngxs/store';
+import { AppState } from '@core';
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent;
@@ -11,11 +10,8 @@ describe('SideMenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SideMenuComponent],
-      imports: [
-        NgxsModule.forRoot([AppState]),
-      ]
-    })
-      .compileComponents();
+      imports: [NgxsModule.forRoot([AppState])]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
