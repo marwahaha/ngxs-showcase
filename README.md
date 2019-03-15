@@ -4,7 +4,7 @@ This project demonstrate certain use of [NGXS](https://ngxs.gitbook.io/ngxs).
 
 (ABANDONNED) See the branch [ngxs2](https://github.com/McKratt/ngxs-showcase/tree/ngxs2) to see the showcase with Angular 5 and the version 2 of NGXS.
 
-See the branch [ngxs3](https://github.com/McKratt/ngxs-showcase/tree/ngxs3) to see the showcase with Angular 6 and the version 3 of NGXS.
+Currently the showcase is in Angular 7 and NGXS 3.
 
 ## Use Case
 
