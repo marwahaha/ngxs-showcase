@@ -1,0 +1,16 @@
+.person-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.person-form-item {
+  width: 15em;
+}
+
+.button {
+  width: 6em;
+}

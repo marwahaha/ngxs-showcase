@@ -1,0 +1,31 @@
+.person-list {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  margin-bottom: 20px;
+}
+
+.mat-list-base .mat-list-item {
+  height: auto;
+}
+
+.mat-card {
+  padding: 5px;
+}
+
+.person-item {
+  flex-grow: 1;
+  display: flex;
+}
+
+.person-tile {
+  flex-grow: 1;
+  padding-left: 10px;
+}
+
+::ng-deep .mat-card-header-text {
+  margin: 0px !important;
+}
+
+a {
+  text-decoration: none;
+}

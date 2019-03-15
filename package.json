@@ -1,0 +1,50 @@
+{
+  "name": "ngsx-showcase",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "7.2.9",
+    "@angular/cdk": "7.3.4",
+    "@angular/common": "^7.2.9",
+    "@angular/compiler": "^7.2.9",
+    "@angular/core": "^7.2.9",
+    "@angular/forms": "^7.2.9",
+    "@angular/http": "^7.2.9",
+    "@angular/material": "^7.3.4",
+    "@angular/material-moment-adapter": "7.3.4",
+    "@angular/platform-browser": "^7.2.9",
+    "@angular/platform-browser-dynamic": "^7.2.9",
+    "@angular/router": "^7.2.9",
+    "@ngxs/form-plugin": "3.4.3",
+    "@ngxs/store": "^3.4.3",
+    "core-js": "^2.6.5",
+    "moment": "2.24.0",
+    "rxjs": "^6.4.0",
+    "tslib": "^1.9.0",
+    "zone.js": "^0.8.29"
+  },
+  "devDependencies": {
+    "@angular-builders/jest": "^7.3.1",
+    "@angular-devkit/build-angular": "^0.13.6",
+    "@angular/cli": "^7.3.6",
+    "@angular/compiler-cli": "^7.2.9",
+    "@angular/language-service": "^7.2.9",
+    "@ngxs/devtools-plugin": "^3.4.3",
+    "@types/node": "^11.11.3",
+    "babel-core": "^6.0.0",
+    "babel-jest": "^23.0.0",
+    "codelyzer": "^5.0.0-beta.1",
+    "jest": "^23.0.0",
+    "protractor": "^5.4.2",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "typescript": "~3.2.4"
+  }
+}
