@@ -1,2 +1,4 @@
-export {SideMenuComponent} from './side-menu/side-menu.component';
-export {CoreModule} from './core.module';
+export { PersonSelected, PersonUnselected } from './store/states/app-state.actions';
+export { AppState } from './store/states/app.state';
+export { AppStateModel } from './store/states/app-state.model';
+

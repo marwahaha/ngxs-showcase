@@ -1,6 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {AppStateModel} from '../models/app-state.model';
-import {PersonSelected, PersonUnselected} from '../actions/app-state.actions';
+import {AppStateModel} from './app-state.model';
+import {PersonSelected, PersonUnselected} from './app-state.actions';
 import {Person} from '../../../models/person.model';
 
 @State<AppStateModel>({

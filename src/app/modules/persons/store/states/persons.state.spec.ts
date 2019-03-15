@@ -1,19 +1,22 @@
-import {async, TestBed} from '@angular/core/testing';
-import {NgxsModule, Store} from '@ngxs/store';
-import {PersonsState} from './persons.state';
-import {Person} from '../../../../models/person.model';
-import {AddPerson, InitPersonsState, ModifyPerson} from '../actions/persons-state.actions';
-import {PersonsStateModel} from '../models/persons-state.model';
+import { async, TestBed } from '@angular/core/testing';
+import { NgxsModule, Store } from '@ngxs/store';
+import { PersonsState } from './persons.state';
+import { Person } from '../../../../models/person.model';
+import { AddPerson, InitPersonsState, ModifyPerson } from '../actions/persons-state.actions';
+import { PersonsStateModel } from '../models/persons-state.model';
 
 describe('Persons State', () => {
   let store: Store;
 
-  const personOne: Person = {id: 1, name: 'premier', forename: '1'};
-  const expectedPersons: Person[] = [personOne, {
-    id: 2,
-    name: 'second',
-    forename: '2'
-  }];
+  const personOne: Person = { id: 1, name: 'premier', forename: '1' };
+  const expectedPersons: Person[] = [
+    personOne,
+    {
+      id: 2,
+      name: 'second',
+      forename: '2'
+    }
+  ];
 
   setupTestBed({
     imports: [NgxsModule.forRoot([PersonsState])]
@@ -28,14 +31,13 @@ describe('Persons State', () => {
   });
 
   describe('InitPersonsState action', () => {
-
     it('should fill state with its content', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
       store.selectOnce(state => expect(state.getPersons).toEqual(expectedPersons));
     }));
   });
 
-  describe('Selector \'PersonState.getPersons\'', () => {
+  describe("Selector 'PersonState.getPersons'", () => {
     it('should return all the persons in the state', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
       store.selectOnce((state: PersonsStateModel) => {
@@ -47,24 +49,20 @@ describe('Persons State', () => {
   });
 
   describe('ModifyPerson action', () => {
-
-    const modifiedPerson: Person = {id: 1, name: 'premier', forename: '10'};
+    const modifiedPerson: Person = { id: 1, name: 'premier', forename: '10' };
 
     it('should replace an existing person', async(() => {
       store.dispatch(new InitPersonsState(expectedPersons));
       store.dispatch(new ModifyPerson(modifiedPerson));
-      store.selectOnce(PersonsState.getPersons).subscribe(
-        persons => {
-          expect(persons).toContain(modifiedPerson);
-          expect(persons).not.toContain(personOne);
-        }
-      );
+      store.selectOnce(PersonsState.getPersons).subscribe(persons => {
+        expect(persons).toContain(modifiedPerson);
+        expect(persons).not.toContain(personOne);
+      });
     }));
   });
 
   describe('AddPerson action', () => {
-
-    const newPerson: Person = {name: 'premier', forename: 'forename'};
+    const newPerson: Person = { name: 'premier', forename: 'forename' };
 
     it('should add the person to the pre existing one', () => {
       store.dispatch(new InitPersonsState(expectedPersons));
@@ -78,8 +76,4 @@ describe('Persons State', () => {
       });
     });
   });
-
 });
-
-
-

@@ -5,8 +5,11 @@ import {Person} from '../../../models/person.model';
 import {InitPersonsState} from '../store/actions/persons-state.actions';
 import {Store} from '@ngxs/store';
 import {PersonsState} from '../store/states/persons.state';
+import { PersonsModule } from '../persons.module';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PersonService {
 
   constructor(private store: Store) {

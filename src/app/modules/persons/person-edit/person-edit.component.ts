@@ -10,7 +10,7 @@ import {first, map} from 'rxjs/operators';
 import {Person} from '../../../models/person.model';
 import {Observable, Subscription} from 'rxjs';
 import {FormAdded, FormSaved} from '../store/actions/person-edit-state.actions';
-import {PersonSelected} from '../../../core/store/actions/app-state.actions';
+import {PersonSelected} from '../../../core/store/states/app-state.actions';
 import {UpdateForm, UpdateFormValue} from '@ngxs/form-plugin';
 
 @Component({

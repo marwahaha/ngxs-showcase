@@ -1,12 +1,12 @@
 <mat-list class="person-list">
-  <mat-list-item *ngFor="let person of persons$ | async" class="person-item">
+  <mat-list-item *ngFor="let person of (persons$ | async)" class="person-item">
     <mat-card (click)="onSelect(person)" class="person-tile">
       <mat-card-header>
         <mat-icon>perm_identity</mat-icon>
       </mat-card-header>
       <mat-card-content>
-        <p>{{person.forename}}</p>
-        <p>{{person.name}}</p>
+        <p>{{ person.forename }}</p>
+        <p>{{ person.name }}</p>
       </mat-card-content>
     </mat-card>
   </mat-list-item>

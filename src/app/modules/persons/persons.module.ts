@@ -1,16 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {PersonsComponent} from './persons.component';
-import {PersonService} from './services/person.service';
-import {PersonEditComponent} from './person-edit/person-edit.component';
-import {RouterModule, Routes} from '@angular/router';
-import {NgxsModule} from '@ngxs/store';
-import {PersonsState} from './store/states/persons.state';
-import {ReactiveFormsModule} from '@angular/forms';
-import {CoreModule} from '@core';
-import {PersonEditState} from './store/states/person-edit.state';
-import {MaterialModule} from '@shared';
-import {NgxsFormPluginModule} from '@ngxs/form-plugin';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PersonsComponent } from './persons.component';
+import { PersonEditComponent } from './person-edit/person-edit.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
+import { PersonsState } from './store/states/persons.state';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PersonEditState } from './store/states/person-edit.state';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { SharedModule } from 'app/shared/shared.module';
 
 export const personRoutes: Routes = [
   {
@@ -23,30 +21,17 @@ export const personRoutes: Routes = [
   }
 ];
 
-
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule,
+    SharedModule,
     NgxsModule.forFeature([PersonsState, PersonEditState]),
     NgxsFormPluginModule.forRoot(),
     RouterModule.forChild(personRoutes),
-    ReactiveFormsModule,
-    CoreModule
+    ReactiveFormsModule
   ],
-  exports: [
-    PersonsComponent,
-    PersonEditComponent,
-    RouterModule
-  ],
-  declarations: [
-    PersonsComponent,
-    PersonEditComponent
-  ],
-  providers: [
-    PersonService
-  ]
+  exports: [PersonsComponent, PersonEditComponent, RouterModule],
+  declarations: [PersonsComponent, PersonEditComponent]
 })
-export class PersonsModule {
-}
+export class PersonsModule {}

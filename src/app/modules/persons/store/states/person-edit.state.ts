@@ -1,8 +1,8 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {PersonEditStateModel} from '../models/person-edit-state.model';
-import {FormAdded, FormSaved} from '../actions/person-edit-state.actions';
-import {Person} from '../../../../models/person.model';
-import {AddPerson, ModifyPerson} from '../actions/persons-state.actions';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { PersonEditStateModel } from '../models/person-edit-state.model';
+import { FormAdded, FormSaved } from '../actions/person-edit-state.actions';
+import { Person } from '../../../../models/person.model';
+import { AddPerson, ModifyPerson } from '../actions/persons-state.actions';
 
 @State<PersonEditStateModel>({
   name: 'personEdit',
@@ -17,7 +17,6 @@ import {AddPerson, ModifyPerson} from '../actions/persons-state.actions';
   }
 })
 export class PersonEditState {
-
   @Selector()
   static getModel(state: any) {
     return state.personEditForm.model;
