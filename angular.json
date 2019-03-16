@@ -67,7 +67,12 @@
           "builder": "@angular-builders/jest:run",
           "options": {
             "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.ts",
-            "coverage": true
+            "coverage": true,
+            "collectCoverageFrom": [
+              "**/src/app/**/*.{ts,tsx}",
+              "!**/node_modules/**",
+              "!**/jest/**"
+            ]
           }
         },
         "lint": {
