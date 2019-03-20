@@ -7,9 +7,7 @@ import {Store} from '@ngxs/store';
 import {PersonsState} from '../store/states/persons.state';
 import { PersonsModule } from '../persons.module';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PersonService {
 
   constructor(private store: Store) {

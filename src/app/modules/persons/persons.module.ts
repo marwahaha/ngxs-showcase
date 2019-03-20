@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PersonEditState } from './store/states/person-edit.state';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { SharedModule } from 'app/shared/shared.module';
+import { PersonService } from './services/person.service';
 
 export const personRoutes: Routes = [
   {
@@ -32,6 +33,7 @@ export const personRoutes: Routes = [
     ReactiveFormsModule
   ],
   exports: [PersonsComponent, PersonEditComponent, RouterModule],
-  declarations: [PersonsComponent, PersonEditComponent]
+  declarations: [PersonsComponent, PersonEditComponent],
+  providers: [PersonService]
 })
 export class PersonsModule {}
